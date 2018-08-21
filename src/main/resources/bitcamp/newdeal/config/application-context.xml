@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:component-scan base-package="bitcamp.newdeal">
+	    <context:exclude-filter type="regex" expression="bitcamp.newdeal.web.*"/>
+	</context:component-scan>
+	
+	<!-- transaction 관련 어노테이션을 처리할 객체들을 등록한다 -->
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	<!-- 어노테이션이 아닌 AOP를 이용하여 Transaction을 관리할 수 있다. -->
+	<!-- 메소드 별로 어떻게 Transaction의 권한(CRUD)을 적용할건지 설정할 수 있다. -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+	    <tx:attributes>
+	        <tx:method name="get*" read-only="true"/>
+	        <tx:method name="list*" read-only="true"/>
+	        <tx:method name="*"/>
+	    </tx:attributes>
+	</tx:advice>
+	
+    <!-- 트랜잭션을 적용할 대상을 설정한다. -->	
+    <aop:config>
+        <!-- 트랜잭션을 적용할 대상의 규칙을 선언 -->
+        <aop:pointcut id="serviceOperation" expression="execution(* bitcamp.newdeal.service.*.*(..))"/>
+        <!-- 대상에 대해 어떤 트랜잭션을 적용할 지 설정한다. -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
+    </aop:config>
+	
+	
+	<!-- Spring - Mybatis 연동 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	  <property name="dataSource" ref="dataSource"></property>
+	  <property name="mapperLocations" value="classpath*:bitcamp/newdeal/mapper/**/*.xml" />
+	  <property name="typeAliasesPackage" value="bitcamp.newdeal.domain"/>
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.driver}" />
+	    <property name="url" value="${jdbc.url}" />
+	    <property name="username" value="${jdbc.username}" />
+	    <property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<!-- Spring 트랜젝션 매니저 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- Repository interface로부터 구현체를 자동생성하는 객체 등록 -->
+	<!-- Repository구현체가 사용할  SQL mapper.xml은 namespace값으로 찾는다.
+	따라서 Repository 인터페이스명과 SQL mapper의 name은 namespace값과 일치해야 한다.
+	SQL id와 인터페이스의 메서드명은 같아야 한다. -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	  <property name="basePackage" value="bitcamp/newdeal/repository" />
+	</bean>
+	
+	
+	<!-- .protperties 파일을 읽어와서 그 데이터를 보관할 객체를 등록한다 -->
+	<!-- contextLoaderListener를 사용할 때는 파일의 위치를 지정하는 방식을 적어줘야 한다. -->
+	<!-- 파일시스템 = file:
+	클래스패스 = classpath:
+	이런식으로 경로명 앞에 붙여줘야한다 -->
+	<context:property-placeholder location="classpath:bitcamp/newdeal/config/jdbc.properties"/>
+
+</beans>

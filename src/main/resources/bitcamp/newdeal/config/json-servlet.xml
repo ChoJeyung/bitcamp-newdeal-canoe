@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="bitcamp.newdeal.web.json">
+    </context:component-scan>
+	
+    <!-- MVC 관련 애노테이션을 처리할 객체들을 자동 등록한다. 
+         matrix variable 기능을 사용하고 싶으면 다음과 같이 활성화시켜라!
+         <mvc:annotation-driven> 를 활성화 해야한다.
+    -->
+    <mvc:annotation-driven enable-matrix-variables="true">
+    
+        <!-- message-converters를 기본등록함. -->
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+              <property name="objectMapper">
+                 <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                   <property name="dateFormat">
+                       <bean class="java.text.SimpleDateFormat">
+                           <constructor-arg value="yyyy-MM-dd"/>
+                       </bean>
+                   </property>
+                 </bean>
+              </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    
+    
+    <!-- Ajax 요청에 대한 Cross Domain 설정 -->
+    <mvc:cors>
+	    <mvc:mapping path="/**"
+	        allowed-origins="*"
+	        max-age="100" />
+	</mvc:cors>
+	
+</beans>
