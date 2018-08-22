@@ -1,4 +1,4 @@
-package bitcamp.newdeal.canoe.domain;
+package bitcamp.newdeal.domain;
 
 import java.util.Date;
 

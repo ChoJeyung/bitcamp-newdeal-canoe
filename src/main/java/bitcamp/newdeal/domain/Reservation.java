@@ -1,4 +1,4 @@
-package bitcamp.newdeal.canoe.domain;
+package bitcamp.newdeal.domain;
 
 public class Reservation {
 	protected int	reservationNo;

@@ -26,7 +26,7 @@
                  <bean class="com.fasterxml.jackson.databind.ObjectMapper">
                    <property name="dateFormat">
                        <bean class="java.text.SimpleDateFormat">
-                           <constructor-arg value="yyyy-MM-dd"/>
+                           <constructor-arg value="yyyy-MM-dd HH:mm"/>
                        </bean>
                    </property>
                  </bean>
