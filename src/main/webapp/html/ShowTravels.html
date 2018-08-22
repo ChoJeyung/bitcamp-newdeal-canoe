@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<div id="card">
+
+		</div>
+	</div>
+	<!-- .container -->
+	<script id="li-template" type="text/x-handlebars-template">
+		{{#each list}}
+		<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+				<div class="card-header">{{price}}</div>
+				<div class="card-body">
+					<h4 class="card-title">{{startAirportNo}} {{arriveAirportNo}}</h4>
+					<p class="card-text">출발: {{startTravelTime}}</p>
+					<p class="card-text">도착: {{arriveTravelTime}}</p>
+
+				</div>
+			</div>
+			{{/each}}
+		</script>
+	<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.bit.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="ShowTravels.js"></script>
+
+</html>

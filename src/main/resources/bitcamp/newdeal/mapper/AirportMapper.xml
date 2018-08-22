@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.newdeal.repository.AirportRepository">
+
+	<resultMap type="airport" id="airportMap">
+		<id column="ANO" property="airportNo" />
+		<result column="NAME" property="airportName" />
+		<result column="SDT" property="airportEntryDate" />
+		<result column="MDT" property="airportModifyDate" />
+	</resultMap>
+
+	<select id="selectList" resultMap="airportMap">
+		select *
+		from P0_AP
+	</select>
+
+	<select id="selectOne" resultMap="airportMap"
+		parameterType="Integer">
+		select *
+		from P0_AP
+		where ANO = #{value}
+	</select>
+</mapper>
+
+
+
+

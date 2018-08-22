@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.newdeal.repository.TravelRepository">
+
+	<resultMap type="travel" id="travelMap">
+		<id column="TNO" property="travelNo" />
+		<result column="SAP" property="startAirportNo" />
+		<result column="AAP" property="arriveAirportNo" />
+		<result column="SDT" property="startTravelTime" />
+		<result column="ADT" property="arriveTravelTime" />
+		<result column="CLS" property="seatClass" />
+		<result column="PRC" property="price" />
+		<result column="IDT" property="travelEntryDate" />
+		<result column="MDT" property="travelModifyDate" />
+		<result column="SNO" property="seatQuantity" />
+	</resultMap>
+
+	<select id="selectList" resultMap="travelMap">
+		select *
+		from P0_TRVL
+	</select>
+</mapper>
+
+
+
+

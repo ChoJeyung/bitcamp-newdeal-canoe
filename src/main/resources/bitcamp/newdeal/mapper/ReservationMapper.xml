@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.newdeal.repository.ReservationRepository">
+
+	<resultMap type="reservation" id="reservationMap">
+		<id column="RNO" property="reservationNo" />
+		<result column="MNO" property="memberNo" />
+		<result column="TNO" property="travelNo" />
+
+	</resultMap>
+
+	<select id="selectList" resultMap="reservationMap">
+		select *
+		from P0_RSV
+	</select>
+</mapper>
+
+
+
+
