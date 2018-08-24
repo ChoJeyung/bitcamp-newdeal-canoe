@@ -1,3 +1,9 @@
+--회원정보
+INSERT INTO `P0_MEMB`(`MNO`, `MID`, `NAME`, `PWD`, `SDT`) VALUES (1, 'user01', '고길동', PASSWORD('1111'), '2018-08-23');
+INSERT INTO `P0_MEMB`(`MNO`, `MID`, `NAME`, `PWD`, `SDT`) VALUES (2, 'user02', '고희동', PASSWORD('1111'), '2018-08-23');
+INSERT INTO `P0_MEMB`(`MNO`, `MID`, `NAME`, `PWD`, `SDT`) VALUES (3, 'user03', '김또치', PASSWORD('1111'), '2018-08-23');
+
+
 
 --공항정보
 INSERT INTO `P0_AP`(`ANO`, `NAME`, `SDT`) VALUES (1,'서울/인천(IDN)','2018-01-07');

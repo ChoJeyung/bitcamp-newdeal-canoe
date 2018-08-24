@@ -8,4 +8,6 @@ public interface MemberService {
 
 	List<Member> list();
 
+    Member getMember(String id, String password);
+
 }
