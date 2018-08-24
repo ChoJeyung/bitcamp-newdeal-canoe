@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Page Title</title>
-<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" /> -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -21,12 +21,12 @@ div.reserve-search .input-group {
 }
 .row {
     /* width: 100%; */
-    padding: 10px;
+    /* padding: 10px; */
 }
 div.search-group {
-    position: sticky;
+    position: relative;
     top: 0px;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .table.travel-table .radio {
@@ -36,6 +36,9 @@ div.search-group {
 .travel-table {
     border-bottom: 1px solid gray;
     width: inherit;
+}
+.thead.bg-primary, .thead.bg-info, .thead.bg-success, .thead.bg-danger, .thead.bg-warning {
+    color: white;
 }
 
 </style>
@@ -64,7 +67,7 @@ div.search-group {
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text"
                         placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-secondary my-2 my-sm-0" type="button">Search</button>
                 </form>
             </div>
         </nav>
@@ -72,13 +75,11 @@ div.search-group {
 
         <hr>
         <div class="search-group">
-            
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                
                 <div class="reserve-search row justify-content-md-center">
                     
                     <!-- 출발지 -->
-                    <div class="input-group col-md-2">
+                    <div class="input-group col-lg-2 col-md-6">
                         <input type="text" class="form-control" placeholder="출발지" aria-label="출발지" aria-describedby="button-addon1">
                         <div class="input-group-append">
                             <button class="btn btn-info" type="button" id="button-addon1"><i class="fas fa-map-marker-alt"></i></button>
@@ -86,7 +87,7 @@ div.search-group {
                     </div>
                     
                     <!-- 도착지 -->
-                    <div class="input-group col-md-2">
+                    <div class="input-group col-lg-2 col-md-6">
                         <input type="text" class="form-control" placeholder="도착지" aria-label="도착지" aria-describedby="button-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-info" type="button" id="button-addon2"><i class="fas fa-map-marker-alt"></i></button>
@@ -94,7 +95,7 @@ div.search-group {
                     </div>
                     
                     <!-- 출발일/도착일 -->
-                    <div class="input-group col-md-3">
+                    <div class="input-group col-lg-3">
                         <input type="text" class="form-control" id="datepicker1" placeholder="가는날" aria-label="출발일" aria-describedby="button-addon4">
                         <input type="text" class="form-control" id="datepicker2" placeholder="오는날" aria-label="도착일" aria-describedby="button-addon4">
                         <!-- <div class="input-group-append">
@@ -103,14 +104,14 @@ div.search-group {
                     </div>
 
                      <!-- 인원수 -->
-                    <div class="input-group col-md-2">
-                        <button class="btn btn-info col-md-3 col-3" type="button" id="button-addon5"><i class="fas fa-minus fa-xs"></i></button>
-                        <input type="text" class="form-control col-md-6 col-6" placeholder="인원" aria-label="인원" aria-describedby="button-addon5">
-                        <button class="btn btn-info col-md-3 col-3" type="button" id="button-addon5"><i class="fas fa-plus fa-xs"></i></button>
+                    <div class="input-group col-lg-2 col-md-6">
+                        <button class="btn btn-info col-lg-3 col-3" type="button" id="button-addon5"><i class="fas fa-minus fa-xs"></i></button>
+                        <input type="text" class="form-control col-lg-6 col-6" placeholder="인원" aria-label="인원" aria-describedby="button-addon5">
+                        <button class="btn btn-info col-lg-3 col-3" type="button" id="button-addon5"><i class="fas fa-plus fa-xs"></i></button>
                     </div>
                         
                     <!-- 좌석등급 -->
-                    <div class="input-group col-md-2">
+                    <div class="input-group col-lg-2 col-md-6">
                         <select class="custom-select" id="inputGroupSelect01" >
                             <option selected>좌석 등급</option>
                             <option value="1">1등석</option>
@@ -121,12 +122,43 @@ div.search-group {
                 </div>
             </nav>
         </div>
+        
+        <!-- 운항날짜 선택 시 상세 시간 포함한 정보 -->
         <h1>1. 항공편 선택</h1>
         항공편 일정을 확인하시고 선택하여 주시기 바랍니다.
         <div class="row">
-            <div class="departure-tables col-md-6 col-12">
+            <div class="departure-tables col-lg-6 col-12">
                 <table class="table travel-table">
-                    <thead class="thead-dark">
+                    <thead class="thead bg-primary">
+                        <tr>
+                            <th scope="col">2018.08.27(월)</th>
+                            <th scope="col" rowspan="1">08:10-11:00</th>
+                            <th scope="col" rowspan="1">소요시간:</th>
+                            <th scope="col" rowspan="1">2시간 50분</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
+                            <td>서울/인천(ICN)</td>
+                            <td>홍콩(HKG)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>08:00</td>
+                            <td>11:00</td>
+                            <th scope="row"></th>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>잔여좌석수:19</td>
+                            <td>417,000 원</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <table class="table travel-table">
+                    <thead class="thead bg-info">
                         <tr>
                             <th scope="col">2018.08.27(월)</th>
                             <th scope="col">08:10-11:00</th>
@@ -155,36 +187,7 @@ div.search-group {
                 </table>
     
                 <table class="table travel-table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">2018.08.27(월)</th>
-                            <th scope="col">08:10-11:00</th>
-                            <th scope="col">소요시간:</th>
-                            <th scope="col">2시간 50분</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
-                            <td>서울/인천(ICN)</td>
-                            <td>홍콩(HKG)</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td>11:00</td>
-                            <th scope="row"></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>잔여좌석수:19</td>
-                            <td>417,000 원</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <table class="table travel-table">
-                    <thead class="thead-dark">
+                    <thead class="thead bg-success">
                         <tr>
                             <th scope="col">2018.08.27(월)</th>
                             <th scope="col">08:10-11:00</th>
@@ -214,9 +217,9 @@ div.search-group {
             </div> <!--  departure table end -->
     
             
-            <div class="return-tables col-md-6 col-12">
+            <div class="return-tables col-lg-6 col-12">
                 <table class="table travel-table">
-                    <thead class="thead-dark">
+                    <thead class="thead bg-danger">
                         <tr>
                             <th scope="col">2018.08.27(월)</th>
                             <th scope="col">08:10-11:00</th>
@@ -245,7 +248,7 @@ div.search-group {
                 </table>
     
                 <table class="table travel-table">
-                    <thead class="thead-dark">
+                    <thead class="thead bg-warning">
                         <tr>
                             <th scope="col">2018.08.27(월)</th>
                             <th scope="col">08:10-11:00</th>
@@ -274,7 +277,7 @@ div.search-group {
                 </table>
     
                 <table class="table travel-table">
-                    <thead class="thead-dark">
+                    <thead class="thead bg-secondary">
                         <tr>
                             <th scope="col">2018.08.27(월)</th>
                             <th scope="col">08:10-11:00</th>
