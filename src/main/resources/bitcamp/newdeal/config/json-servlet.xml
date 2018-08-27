@@ -16,8 +16,8 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/auth/signIn"/>
-            <mvc:exclude-mapping path="/member/signUp"/>
+            <mvc:exclude-mapping path="/auth/logIn"/>
+            <mvc:exclude-mapping path="/member/register"/>
             <bean class="bitcamp.newdeal.web.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

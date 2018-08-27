@@ -1,342 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<title>Page Title</title>
-<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" />
+<meta charset="UTF-8">
+<title>Canoe!</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" /> -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
-<!-- <link rel="stylesheet" type="text/css" media="screen" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" /> -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <style>
+
 .container {
     position:relative;
+    min-width: 360px;
 }
-div.reserve-search.row {
-    margin: 0px;
-}
-div.reserve-search .input-group {
-    padding-left:5px;
-    padding-right:5px;
-    margin: 5px 0px;
-}
-.row {
-    /* width: 100%; */
-    /* padding: 10px; */
-}
-div.search-group {
-    position: relative;
-    top: 0px;
-    /* z-index: 1; */
-}
-
-.table.travel-table .radio {
-    vertical-align: middle;
-    text-align: center;
-}
-.travel-table {
-    border-bottom: 1px solid gray;
-    width: inherit;
-}
-.thead.bg-primary, .thead.bg-info, .thead.bg-success, .thead.bg-danger, .thead.bg-warning {
-    color: white;
-}
-
 </style>
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Canoe!</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarColor01" aria-controls="navbarColor01"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text"
-                        placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="button">Search</button>
-                </form>
-            </div>
-        </nav>
-        <!-- navbar end -->
+        <section id="navbar-login"></section>
+        <!-- <hr> -->
+        <section id="search-bar"></section>
+        <section id="travel-list"></section>
 
-        <hr>
-        <div class="search-group">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div class="reserve-search row justify-content-md-center">
-                    
-                    <!-- 출발지 -->
-                    <div class="input-group col-lg-2 col-md-6">
-                        <input type="text" class="form-control" placeholder="출발지" aria-label="출발지" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button" id="button-addon1"><i class="fas fa-map-marker-alt"></i></button>
-                        </div>
-                    </div>
-                    
-                    <!-- 도착지 -->
-                    <div class="input-group col-lg-2 col-md-6">
-                        <input type="text" class="form-control" placeholder="도착지" aria-label="도착지" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button" id="button-addon2"><i class="fas fa-map-marker-alt"></i></button>
-                        </div>
-                    </div>
-                    
-                    <!-- 출발일/도착일 -->
-                    <div class="input-group col-lg-3">
-                        <input type="text" class="form-control" id="datepicker1" placeholder="가는날" aria-label="출발일" aria-describedby="button-addon4">
-                        <input type="text" class="form-control" id="datepicker2" placeholder="오는날" aria-label="도착일" aria-describedby="button-addon4">
-                        <!-- <div class="input-group-append">
-                            <button class="btn btn-info" type="button" id="button-addon4">B</button>
-                        </div> -->
-                    </div>
-
-                     <!-- 인원수 -->
-                    <div class="input-group col-lg-2 col-md-6">
-                        <button class="btn btn-info col-lg-3 col-3" type="button" id="button-addon5"><i class="fas fa-minus fa-xs"></i></button>
-                        <input type="text" class="form-control col-lg-6 col-6" placeholder="인원" aria-label="인원" aria-describedby="button-addon5">
-                        <button class="btn btn-info col-lg-3 col-3" type="button" id="button-addon5"><i class="fas fa-plus fa-xs"></i></button>
-                    </div>
-                        
-                    <!-- 좌석등급 -->
-                    <div class="input-group col-lg-2 col-md-6">
-                        <select class="custom-select" id="inputGroupSelect01" >
-                            <option selected>좌석 등급</option>
-                            <option value="1">1등석</option>
-                            <option value="2">프레스티지</option>
-                            <option value="3">이코노미</option>
-                        </select>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        
-        <!-- 운항날짜 선택 시 상세 시간 포함한 정보 -->
-        <h1>1. 항공편 선택</h1>
-        항공편 일정을 확인하시고 선택하여 주시기 바랍니다.
-        <div class="row">
-            <div class="departure-tables col-lg-6 col-12">
-                <table class="table travel-table">
-                    <thead class="thead bg-primary">
-                        <tr>
-                            <th scope="col">2018.08.27(월)</th>
-                            <th scope="col" rowspan="1">08:10-11:00</th>
-                            <th scope="col" rowspan="1">소요시간:</th>
-                            <th scope="col" rowspan="1">2시간 50분</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
-                            <td>서울/인천(ICN)</td>
-                            <td>홍콩(HKG)</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td>11:00</td>
-                            <th scope="row"></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>잔여좌석수:19</td>
-                            <td>417,000 원</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <table class="table travel-table">
-                    <thead class="thead bg-info">
-                        <tr>
-                            <th scope="col">2018.08.27(월)</th>
-                            <th scope="col">08:10-11:00</th>
-                            <th scope="col">소요시간:</th>
-                            <th scope="col">2시간 50분</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
-                            <td>서울/인천(ICN)</td>
-                            <td>홍콩(HKG)</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td>11:00</td>
-                            <th scope="row"></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>잔여좌석수:19</td>
-                            <td>417,000 원</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <table class="table travel-table">
-                    <thead class="thead bg-success">
-                        <tr>
-                            <th scope="col">2018.08.27(월)</th>
-                            <th scope="col">08:10-11:00</th>
-                            <th scope="col">소요시간:</th>
-                            <th scope="col">2시간 50분</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
-                            <td>서울/인천(ICN)</td>
-                            <td>홍콩(HKG)</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td>11:00</td>
-                            <th scope="row"></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>잔여좌석수:19</td>
-                            <td>417,000 원</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> <!--  departure table end -->
-    
-            
-            <div class="return-tables col-lg-6 col-12">
-                <table class="table travel-table">
-                    <thead class="thead bg-danger">
-                        <tr>
-                            <th scope="col">2018.08.27(월)</th>
-                            <th scope="col">08:10-11:00</th>
-                            <th scope="col">소요시간:</th>
-                            <th scope="col">2시간 50분</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
-                            <td>서울/인천(ICN)</td>
-                            <td>홍콩(HKG)</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td>11:00</td>
-                            <th scope="row"></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>잔여좌석수:19</td>
-                            <td>417,000 원</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <table class="table travel-table">
-                    <thead class="thead bg-warning">
-                        <tr>
-                            <th scope="col">2018.08.27(월)</th>
-                            <th scope="col">08:10-11:00</th>
-                            <th scope="col">소요시간:</th>
-                            <th scope="col">2시간 50분</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
-                            <td>서울/인천(ICN)</td>
-                            <td>홍콩(HKG)</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td>11:00</td>
-                            <th scope="row"></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>잔여좌석수:19</td>
-                            <td>417,000 원</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <table class="table travel-table">
-                    <thead class="thead bg-secondary">
-                        <tr>
-                            <th scope="col">2018.08.27(월)</th>
-                            <th scope="col">08:10-11:00</th>
-                            <th scope="col">소요시간:</th>
-                            <th scope="col">2시간 50분</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" rowspan="3" class="radio"><input type="radio" name="travel" id="">KE603</th>
-                            <td>서울/인천(ICN)</td>
-                            <td>홍콩(HKG)</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>08:00</td>
-                            <td>11:00</td>
-                            <th scope="row"></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"></th>
-                            <td>잔여좌석수:19</td>
-                            <td>417,000 원</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> <!--  return table end -->
-        </div> <!--  row end -->
-        
-
-        
-
-        <h1>2. 운임 선택</h1>
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <!-- container end -->
-
-
-
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/jquery-ui-dist/jquery-ui.js"></script>
-    <script src="../node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/common.js"></script>
     <script>
-        var miniDate;
-        $('#datepicker1').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date(2100, 1, 1), minDate: new Date });
-        $('#datepicker2').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date(2100, 1, 1), minDate: miniDate });
-        $('#datepicker1').change(() => {
-            miniDate = $('#datepicker1').val();  
-            $('#datepicker2').datepicker( "option", "minDate", miniDate);
-        });
+        'use strict'
+        $('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+        $('#search-bar').load(`${serverApiAddr}/html/search.html`);
+        $('#travel-list').load(`${serverApiAddr}/html/travel.html`);
     </script>
 </body>
 </html>
