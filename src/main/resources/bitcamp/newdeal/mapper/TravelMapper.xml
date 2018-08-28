@@ -10,16 +10,61 @@
 		<result column="AAP" property="arriveAirportNo" />
 		<result column="SDT" property="startTravelTime" />
 		<result column="ADT" property="arriveTravelTime" />
-		<result column="CLS" property="seatClass" />
-		<result column="PRC" property="price" />
 		<result column="IDT" property="travelEntryDate" />
 		<result column="MDT" property="travelModifyDate" />
-		<result column="SNO" property="seatQuantity" />
+		<result column="SAPNAME" property="startAirportName" />
+		<result column="AAPNAME" property="arriveAirportName" />
 	</resultMap>
 
 	<select id="selectList" resultMap="travelMap">
-		select *
-		from P0_TRVL
+		select
+		TR.TNO,
+		TR.SAP,
+		TR.AAP,
+		TR.SDT,
+		TR.ADT,
+		SA.NAME SAPNAME,
+		AA.NAME AAPNAME
+		from P0_TRVL TR
+		JOIN P0_AP
+		SA ON TR.SAP = SA.ANO
+		JOIN P0_AP AA
+		ON TR.AAP = AA.ANO
+	</select>
+	<select id="get" resultMap="travelMap" parameterType="int">
+		select
+		TR.TNO,
+		TR.SAP,
+		TR.AAP,
+		TR.SDT,
+		TR.ADT,
+		SA.NAME SAPNAME,
+		AA.NAME AAPNAME
+		from P0_TRVL TR
+		JOIN P0_AP SA ON TR.SAP = SA.ANO
+		JOIN P0_AP AA
+		ON TR.AAP
+		= AA.ANO
+		where TR.TNO = #{value}
+	</select>
+
+	<select id="showReservations" resultMap="travelMap"
+		parameterType="int">
+        select
+        TR.TNO,
+        TR.SAP,
+        TR.AAP,
+        TR.SDT,
+        TR.ADT,
+        SA.NAME SAPNAME,
+        AA.NAME AAPNAME
+        from P0_TRVL TR
+        JOIN P0_AP SA ON TR.SAP = SA.ANO
+        JOIN P0_AP AA
+        ON TR.AAP
+        = AA.ANO
+        JOIN P0_RSV rsv on TR.TNO = rsv.TNO
+		where rsv.MNO = #{value}
 	</select>
 </mapper>
 

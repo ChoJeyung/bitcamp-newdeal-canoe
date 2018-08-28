@@ -23,4 +23,16 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.selectList();
 	}
 
+	@Override
+	public Travel get(int no) {
+		// TODO Auto-generated method stub
+		return travelRepository.get(no);
+	}
+
+	@Override
+	public List<Travel> showReservations(int no) {
+		// TODO Auto-generated method stub
+		return travelRepository.showReservations(no);
+	}
+
 }

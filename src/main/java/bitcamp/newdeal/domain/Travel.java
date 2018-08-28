@@ -3,16 +3,15 @@ package bitcamp.newdeal.domain;
 import java.util.Date;
 
 public class Travel {
-	protected int	travelNo;
-	protected int	startAirportNo;
-	protected int	arriveAirportNo;
-	protected Date	startTravelTime;
-	protected Date	arriveTravelTime;
-	protected int	seatClass;
-	protected int	price;
-	protected Date	travelEntryDate;
-	protected Date	travelModifyDate;
-	protected int	seatQuantity;
+	protected int		travelNo;
+	protected int		startAirportNo;
+	protected int		arriveAirportNo;
+	protected String	startAirportName;
+	protected String	arriveAirportName;
+	protected Date		startTravelTime;
+	protected Date		arriveTravelTime;
+	protected Date		travelEntryDate;
+	protected Date		travelModifyDate;
 
 	public int getTravelNo() {
 		return travelNo;
@@ -38,6 +37,22 @@ public class Travel {
 		this.arriveAirportNo = arriveAirportNo;
 	}
 
+	public String getStartAirportName() {
+		return startAirportName;
+	}
+
+	public void setStartAirportName(String startAirportName) {
+		this.startAirportName = startAirportName;
+	}
+
+	public String getArriveAirportName() {
+		return arriveAirportName;
+	}
+
+	public void setArriveAirportName(String arriveAirportName) {
+		this.arriveAirportName = arriveAirportName;
+	}
+
 	public Date getStartTravelTime() {
 		return startTravelTime;
 	}
@@ -52,22 +67,6 @@ public class Travel {
 
 	public void setArriveTravelTime(Date arriveTravelTime) {
 		this.arriveTravelTime = arriveTravelTime;
-	}
-
-	public int getSeatClass() {
-		return seatClass;
-	}
-
-	public void setSeatClass(int seatClass) {
-		this.seatClass = seatClass;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
 	}
 
 	public Date getTravelEntryDate() {
@@ -86,19 +85,11 @@ public class Travel {
 		this.travelModifyDate = travelModifyDate;
 	}
 
-	public int getSeatQuantity() {
-		return seatQuantity;
-	}
-
-	public void setSeatQuantity(int seatQuantity) {
-		this.seatQuantity = seatQuantity;
-	}
-
 	@Override
 	public String toString() {
 		return "Travel [travelNo=" + travelNo + ", startAirportNo=" + startAirportNo + ", arriveAirportNo="
-		        + arriveAirportNo + ", startTravelTime=" + startTravelTime + ", arriveTravelTime=" + arriveTravelTime
-		        + ", seatClass=" + seatClass + ", price=" + price + ", travelEntryDate=" + travelEntryDate
-		        + ", travelModifyDate=" + travelModifyDate + ", seatQuantity=" + seatQuantity + "]";
+		        + arriveAirportNo + ", startAirportName=" + startAirportName + ", arriveAirportName="
+		        + arriveAirportName + ", startTravelTime=" + startTravelTime + ", arriveTravelTime=" + arriveTravelTime
+		        + ", travelEntryDate=" + travelEntryDate + ", travelModifyDate=" + travelModifyDate + "]";
 	}
 }

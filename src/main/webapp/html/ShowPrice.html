@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row" id="card"></div>
+	</div>
+	<!-- .container -->
+	<script id="li-template" type="text/x-handlebars-template">
+		{{#each list}}
+		<div class="card text-white bg-dark mb-3 col-5" style="max-width: 30rem; margin: 20px;">
+				<div class="card-header">{{startName}} -> {{arriveName}}</div>
+				<div class="card-body">
+					<h4 class="card-title"></h4>
+                    <p class="card-text">{{arriveTravelTime}} -> {{startTravelTime}}</p>
+					<p class="card-text">좌석등급: {{seatClass}} 등석</p>
+					<p class="card-text">가격: {{price}} 원</p>
+                    <p class="card-text">잔여좌석수: {{seatQnt}}</p>
+                    <button type="button" class="btn btn-outline-success" onclick="makeReserv()">예약하기</button>
+				</div>
+			</div>
+			{{/each}}
+		</script>
+	<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.bit.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="ShowPrice.js"></script>
+</html>
