@@ -53,6 +53,12 @@
             </if>
         WHERE MNO=#{memberNo}
     </update>
+    
+    <select id="findById" parameterType="string" resultType="string">
+        SELECT MID
+        FROM P0_MEMB
+        WHERE MID=#{id}
+    </select>
 </mapper>
 
 

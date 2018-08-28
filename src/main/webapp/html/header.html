@@ -19,7 +19,7 @@ div.div-login {
     width: 100%;
 }
 
-.login-hide {
+.hide {
     display: none;
 }
 
@@ -39,7 +39,7 @@ div.div-login {
         <div class="nav-header-button ml-auto">
             <button type="button" id="login-popover" class="btn btn-md btn-danger login-no" data-toggle="popover" title="Login Form" data-placement="bottom">LogIn</button>
             <button type="button" id="register-view" class="btn btn-md btn-danger login-no">Register</button>
-            <div class="login-status login-hide">
+            <div class="login-status hide">
 
                 <button type="button" id="myInfo-view" class="btn btn-md btn-info">내 정보</button>
                 <button type="button" id="reservation-view" class="btn btn-md btn-info" onclick=location.href="ShowReservations.html">예약현황</button>
@@ -116,11 +116,11 @@ $('#logout').click(()=>{
         (result)=>{
             if(result.loginUser) {
                 loginUser = result.loginUser;
-                $('.login-no').addClass('login-hide');
-                $('.login-status').removeClass('login-hide');
+                $('.login-no').addClass('hide');
+                $('.login-status').removeClass('hide');
             } else {
-                $('.login-no').removeClass('login-hide');
-                $('.login-status').addClass('login-hide');
+                $('.login-no').removeClass('hide');
+                $('.login-status').addClass('hide');
             }
     });
 
@@ -139,8 +139,8 @@ $('#logout').click(()=>{
                 if (result.status === 'success') {
                     loginUser = result.loginUser;
                     location.href = 'main.html';
-                    // $('.login-no').addClass('login-hide');
-                    // $('.login-status').removeClass('login-hide');
+                    // $('.login-no').addClass('hide');
+                    // $('.login-status').removeClass('hide');
                     // $('#login-popover').popover('hide');
                 } else {
                     alert('로그인 실패!');

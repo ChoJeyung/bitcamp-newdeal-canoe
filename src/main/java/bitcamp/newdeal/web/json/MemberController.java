@@ -74,4 +74,13 @@ public class MemberController {
 	    }
 	    return result;
 	}
+	
+	@GetMapping("checkId")
+	public Object checkId(String id) {
+	    //HashMap<String, Object> result = new HashMap<>();
+	    id = memberService.checkId(id);
+	    //System.out.println(id);
+	    //result.put("id", id);
+	    return id;
+	}
 }

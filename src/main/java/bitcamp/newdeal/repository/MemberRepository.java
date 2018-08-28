@@ -17,4 +17,6 @@ public interface MemberRepository {
 
     int updateMember(Member member);
 
+    String findById(String id);
+
 }
