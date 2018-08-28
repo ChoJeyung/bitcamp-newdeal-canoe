@@ -12,6 +12,15 @@
 
     <context:component-scan base-package="bitcamp.newdeal.web.json">
     </context:component-scan>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/auth/logIn"/>
+            <mvc:exclude-mapping path="/member/register"/>
+            <bean class="bitcamp.newdeal.web.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 	
     <!-- MVC 관련 애노테이션을 처리할 객체들을 자동 등록한다. 
          matrix variable 기능을 사용하고 싶으면 다음과 같이 활성화시켜라!

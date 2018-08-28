@@ -1,5 +1,6 @@
 package bitcamp.newdeal.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,5 +21,12 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberRepository.selectList();
 	}
+    @Override
+    public Member getMember(String id, String password) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("password", password);
+        return memberRepository.findByIdAndPassword(params);
+    }
 
 }

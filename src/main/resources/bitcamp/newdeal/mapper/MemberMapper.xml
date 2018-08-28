@@ -17,6 +17,12 @@
 		select *
 		from P0_MEMB
 	</select>
+	
+	<select id="findByIdAndPassword" parameterType="map" resultMap="memberMap">
+	   SELECT *
+	   FROM P0_MEMB
+	   WHERE MID=#{id} AND PWD=PASSWORD(#{password})
+	</select>
 </mapper>
 
 

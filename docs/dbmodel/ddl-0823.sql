@@ -110,9 +110,8 @@ ALTER TABLE P0_RSV
 CREATE TABLE P0_GRD (
     TNO INTEGER NOT NULL COMMENT '운항번호', -- 운항번호
     CLS INTEGER NOT NULL COMMENT '좌석등급', -- 좌석등급
-    PNO INTEGER NULL     COMMENT '가격번호', -- 가격번호
-    PRC INTEGER NULL     COMMENT '가격', -- 가격
-    SNO INTEGER NULL     COMMENT '총좌석수' -- 총좌석수
+    PRC INTEGER NOT NULL COMMENT '가격', -- 가격
+    SNO INTEGER NOT NULL COMMENT '총좌석수' -- 총좌석수
 )
 COMMENT '좌석정보';
 
@@ -123,6 +122,11 @@ ALTER TABLE P0_GRD
             TNO, -- 운항번호
             CLS  -- 좌석등급
         );
+
+-- 좌석정보 유니크 인덱스
+CREATE UNIQUE INDEX UIX_P0_GRD
+    ON P0_GRD ( -- 좌석정보
+    );
 
 -- 운항정보
 ALTER TABLE P0_TRVL

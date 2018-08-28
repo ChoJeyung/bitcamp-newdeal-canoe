@@ -1,0 +1,94 @@
+<style>
+
+.container {
+    position:relative;
+}
+.search-login-bar.row {
+    /* background-color: #2ea4e7; */
+    /* background-image:url("../img/worldmap.jpg"); */
+    /* background-size: cover;  */
+    margin: 0px 0px;
+}
+div.reserve-search.row {
+    margin: 0px;
+}
+div.reserve-search .input-group {
+    padding-left:5px;
+    padding-right:5px;
+    margin: 5px 0px;
+}
+div.reserve-search .input-group input {
+    text-align: center;
+}
+
+div.search-group {
+    position: relative;
+    top: 0px;
+    width: 300px;
+    /* z-index: 1; */
+    margin: auto;
+}
+</style>
+
+<div class="search-login-bar row bg-primary">
+    <div class="search-group col-lg-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="reserve-search row justify-content-md-center">
+                
+                <!-- 출발지 -->
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="출발지" aria-label="출발지" aria-describedby="button-addon1">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="button" id="button-addon1"><i class="fas fa-map-marker-alt"></i></button>
+                    </div>
+                </div>
+                
+                <!-- 도착지 -->
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="도착지" aria-label="도착지" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="button" id="button-addon2"><i class="fas fa-map-marker-alt"></i></button>
+                    </div>
+                </div>
+                
+                <!-- 출발일/도착일 -->
+                <div class="input-group">
+                    <input type="text" class="form-control" id="datepicker1" placeholder="가는날" aria-label="출발일" aria-describedby="button-addon4">
+                    <input type="text" class="form-control" id="datepicker2" placeholder="오는날" aria-label="도착일" aria-describedby="button-addon4">
+                </div>
+
+                <!-- 인원수 -->
+                <div class="input-group">
+                    <button class="btn btn-info col-3" type="button" id="button-addon5"><i class="fas fa-minus fa-xs"></i></button>
+                    <input type="text" class="form-control col-lg-6 col-6" placeholder="인원" value="1" aria-label="인원" aria-describedby="button-addon5">
+                    <button class="btn btn-info col-3" type="button" id="button-addon5"><i class="fas fa-plus fa-xs"></i></button>
+                </div>
+                    
+                <!-- 좌석등급 -->
+                <div class="input-group">
+                    <select class="custom-select" id="inputGroupSelect01" >
+                        <option selected>좌석 등급</option>
+                        <option value="1">1등석</option>
+                        <option value="2">프레스티지</option>
+                        <option value="3">이코노미</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </div> <!-- search-group end -->
+    
+</div>
+
+<script>
+'use strict'
+// 검색 관련 --------------------------------------------
+    // 출발날짜/ 귀국날짜 datepicker - jquery-ui
+    var miniDate;
+    $('#datepicker1').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date(2100, 1, 1), minDate: new Date });
+    $('#datepicker2').datepicker({ dateFormat: 'yy-mm-dd', maxDate: new Date(2100, 1, 1), minDate: miniDate });
+    $('#datepicker1').change(() => {
+        miniDate = $('#datepicker1').val();  
+        $('#datepicker2').datepicker( "option", "minDate", miniDate);
+    });
+// 검색 관련 --------------------------------------------
+</script>
