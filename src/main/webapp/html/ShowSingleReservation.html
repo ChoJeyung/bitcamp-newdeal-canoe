@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+<h1>예약 개별 보기</h1>
+	<div class="container">
+		<div class="row" id="card"></div>
+	</div>
+	<!-- .container -->
+	<script id="li-template" type="text/x-handlebars-template">
+        <div class="card text-white bg-secondary mb-3 col-5" style="max-width: 30rem; margin: 20px;">
+                <div class="card-header">{{startAirportName}} -> {{arriveAirportName}}</div>
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text">{{arriveTravelTime}} -> {{startTravelTime}}</p>
+                    <p class="card-text">좌석등급: {{seatClass}} 등석</p>
+                    <button type="button" class="btn btn-outline-danger" onclick="cancelReserv()">예약 취소하기</button>
+                </div>
+            </div>
+        </script>
+	<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.bit.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="ShowSingleReservation.js"></script>
+</html>

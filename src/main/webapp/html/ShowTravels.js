@@ -11,33 +11,15 @@ let data = null;
 
 function loadList() {
     $.getJSON(`${serverApiAddr}/json/travel/list`, (result) => {
-        var APName;
-        for (var item of result.list) {
-
-            $.getJSON(`${serverApiAddr}/json/airport/${item.startAirportNo}`, (APName) => {
-
-                item.startAirportNo = APName.airport.airportName;
-            })
-            $.getJSON(`${serverApiAddr}/json/airport/${item.arriveAirportNo}`, (APName) => {
-
-                item.arriveAirportNo = APName.airport.airportName;
-            })
-        }
-        console.log(result);
-
-
         var html = template(result);
-
+        data = result;
         $('#card').html(html);
     })
 }
 
-// 이 방식은 실행 시점에 존재하는 태그에 대해서만 이벤트 핸들러를 등록할 수 있다.
-/*
- * $('.viewLink').click(function (event) { event.preventDefault(); var id =
- * $(event.currentTarget).attr('data-id'); location.href =
- * `view.html?id=${id}&page=${data.page}&size=${data.size}`; });
- */
-
-// 실행 시점에 존재하지 않더라도 이벤트 핸들러를 등록하는 방법은?
-// => 앞으로 생성될 태그의 부모에 리스너를 등록하는 것이다.
+// 페이지 이동 함수(후에 한 페이지로 합친 후엔 아래 주석을 참조하여 새 함수 생성 필요)
+$('.travel').on('click', function(event){
+	var no = $(event.target).attr('data-id');
+	console.log($(event.target));
+	location.href='ShowPrice.html?travelNo'+no;
+});

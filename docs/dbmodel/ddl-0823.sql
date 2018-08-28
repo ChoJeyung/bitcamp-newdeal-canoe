@@ -177,3 +177,5 @@ ALTER TABLE P0_GRD
         REFERENCES P0_TRVL ( -- 운항정보
             TNO -- 운항번호
         );
+        
+        ALTER TABLE P0_MEMB

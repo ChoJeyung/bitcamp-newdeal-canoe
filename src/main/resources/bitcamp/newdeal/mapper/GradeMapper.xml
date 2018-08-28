@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.newdeal.repository.GradeRepository">
+
+	<resultMap type="grade" id="gradeMap">
+		<id column="TNO" property="travelNo" />
+		<result column="CLS" property="seatClass" />
+		<result column="PRC" property="price" />
+		<result column="SNO" property="seatQnt" />
+	</resultMap>
+
+	<select id="selectList" resultMap="gradeMap">
+		select *
+		from P0_GRD
+	</select>
+	   <select id="findByTrvlNo" resultMap="gradeMap"
+        parameterType="int">
+        select * 
+        from P0_GRD
+        where TNO=#{value};
+        </select>
+</mapper>
+
+
+
+

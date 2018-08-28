@@ -2,21 +2,38 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bitcamp.newdeal.repository.ReservationRepository">
+<mapper
+	namespace="bitcamp.newdeal.repository.ReservationRepository">
 
 	<resultMap type="reservation" id="reservationMap">
 		<id column="RNO" property="reservationNo" />
 		<result column="MNO" property="memberNo" />
 		<result column="TNO" property="travelNo" />
-
+		<result column="CLS" property="seatClass" />
 	</resultMap>
 
-	<select id="selectList" resultMap="reservationMap">
+	<select id="selectList" resultMap="reservationMap"
+		parameterType="int">
+		select *
+		from P0_RSV rsv
+		join P0_TRVL trv on rsv.TNO=
+		trv.TNO
+		where MNO = #{value}
+	</select>
+
+	<select id="get" resultMap="reservationMap" parameterType="int">
 		select *
 		from P0_RSV
+		where RNO = #{value}
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from P0_RSV
+		where RNO=#{reservNo}
+	</delete>
+	
+	<insert id="insert" parameterType="map">
+	   insert into P0_RSV(MNO, TNO, CLS)
+	   VALUES(#{memberNo}, #{travelNo}, #{seatClass})
+	</insert>
 </mapper>
-
-
-
-

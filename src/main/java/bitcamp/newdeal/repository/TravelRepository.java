@@ -8,4 +8,8 @@ public interface TravelRepository {
 
 	List<Travel> selectList();
 
+	Travel get(int no);
+
+	List<Travel> showReservations(int no);
+
 }
