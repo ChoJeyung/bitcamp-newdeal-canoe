@@ -44,6 +44,10 @@
     left: 10%;
 }
 
+.modify-hide {
+    display: none;
+}
+
 </style>
 </head>
 <body>
@@ -54,39 +58,43 @@
         <section id="register-view">
 
             <div id="register-form-bg" class="bg-light">
-                <h1>회원가입</h1>
+                <h1>내 정보</h1>
             </div>
 
             <form id="register-form" class="col-lg-8 col-md-10 col-12">
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label for="input-id" class="col-sm-4 col-md-6 col-4 col-form-label">Id</label>
                     <div class="col-sm-8 col-md-6 col-8">
-                        <input type="text" class="form-control" id="input-id" placeholder="아이디">
+                        <input type="text" class="form-control-plaintext" id="input-id" placeholder="아이디" readonly>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group row">
                     <label for="input-email" class="col-sm-4 col-md-6 col-4 col-form-label">Email</label>
                     <div class="col-sm-8 col-md-6 col-8">
-                        <input type="email" class="form-control" id="input-email" placeholder="이메일">
+                        <input type="email" class="form-control-plaintext" id="input-email" placeholder="" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="input-name" class="col-sm-4 col-md-6 col-4 col-form-label">Name</label>
                     <div class="col-sm-8 col-md-6 col-8">
-                        <input type="text" class="form-control" id="input-name" placeholder="이름">
+                        <input type="text" class="form-control-plaintext" id="input-name" placeholder="이름" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="input-password" class="col-sm-4 col-md-6 col-4 col-form-label">Password</label>
                     <div class="col-sm-8 col-md-6 col-8">
-                        <input type="password" class="form-control" id="input-password" placeholder="암호">
+                        <input type="password" class="form-control-plaintext modify-confirm modify-hide" id="input-password" placeholder="" readonly>
                     </div>
                 </div>
                 
                 <div class="form-group row">
                     <div class="col-sm-4 col-md-6 col-4"></div>
                     <div class="col-sm-8 col-md-6 col-8">
-                        <button id="register-submit" type="button" class="btn btn-primary">Register</button>
+                        <button id="modify-view" type="button" class="btn btn-primary">수정하기</button>
+                        <div class="modify-confirm modify-hide">
+                            <button id="modify-submit" type="button" class="btn btn-danger">저장</button>
+                            <button id="modify-cancel" type="button" class="btn btn-primary">취소</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -107,36 +115,72 @@
     <script src="../js/common.js"></script>
     <script>
         'use strict'
-        //header 불러오기
-        $('#navbar-login').load(`${serverApiAddr}/html/header.html`);
-            // $('#search-bar').load(`${serverApiAddr}/html/search.html`);
-            // $('#travel-list').load(`${serverApiAddr}/html/travel.html`);
-
-        //회원가입 관련 ---------------------------------------------------
-        $('#register-submit').click(()=>{
-            //console.log($('#register-form input'));
-            $.post(
-                `${serverApiAddr}/json/member/register`, 
-                {
-                    memberId:         $('#input-id').val(),
-                    //memberEmail:      $('#input-email').val(),
-                    memberName:       $('#input-name').val(),
-                    memberPwd:   $('#input-password').val()
-                }, 
-                (result)=>{
-                    if (result.status === 'success') {
-                        $('#register-submit').prop('disabled', true);
-                        alert('가입을 축하합니다!');
-                        setTimeout(() => {
-                            location.href = 'main.html';
-                        }, 3000);
-                    } else {
-                        alert('회원가입 실패!');
-                    }
-                });
+        
+        //세션 체크 후 비로그인 상태면 main으로 강제이동
+        var loginUser; // 세션을 담을 변수
+        $.get(
+            `${serverApiAddr}/json/auth/sessionCheck`, 
+            (result)=>{
+                if(result.loginUser) {
+                    loginUser = result.loginUser;
+                } else {
+                    location.href = 'main.html';
+                }
         });
 
-        //회원가입 관련 end -----------------------------------------------
+        //header 불러오기
+        $('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+        
+        //내 정보 불러오기
+        getMyInfo();
+        function getMyInfo() {
+            $.getJSON(
+                `${serverApiAddr}/json/member/myInfo`, 
+                (result)=>{
+                    console.log(result.member);
+                    //$('#input-id').val(result.member.memberId);
+                    $('#input-name').val(result.member.memberName);
+            });
+        }
+        
+    //수정하기 관련 ------------------------------------------------------------
+        //수정 폼 보여주기
+        $('#modify-view').click(function() {
+            $(this).addClass('modify-hide');
+            $('.modify-confirm').removeClass('modify-hide');
+            $('#register-form input').prop('readonly', '');
+            $('#register-form input').removeClass('form-control-plaintext');
+            $('#register-form input').addClass('form-control');
+        });
+        
+        //수정 취소
+        $('#modify-cancel').click(function() {
+            $('.modify-confirm').addClass('modify-hide');
+            $('#modify-view').removeClass('modify-hide');
+            $('#register-form input').prop('readonly', true);
+            $('#register-form input').addClass('form-control-plaintext');
+            $('#register-form input').removeClass('form-control');
+            getMyInfo();
+        });
+
+        //수정 확인
+        $('#modify-submit').click(()=>{
+            $.post(
+                `${serverApiAddr}/json/member/myInfoModify`,
+                {
+                    memberId: $('#input-id').val(),
+                    memberName: $('#input-name').val(),
+                    memberPwd: $('#input-password').val()
+                },
+                (result)=>{
+                    //console.log(result);
+                    location.reload();
+                }
+            );
+        });
+    
+    //수정하기 관련 end ---------------------------------------------------------
+
     </script>
 </body>
 </html>

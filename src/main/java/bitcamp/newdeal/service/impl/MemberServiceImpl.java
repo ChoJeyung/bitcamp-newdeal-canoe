@@ -28,5 +28,17 @@ public class MemberServiceImpl implements MemberService {
         params.put("password", password);
         return memberRepository.findByIdAndPassword(params);
     }
+    @Override
+    public int register(Member member) {
+        return memberRepository.insertMember(member);
+    }
+    @Override
+    public Member myInfo(int memberNo) {
+        return memberRepository.findByNo(memberNo);
+    }
+    @Override
+    public int myInfoModify(Member member) {
+        return memberRepository.updateMember(member);
+    }
 
 }
