@@ -40,8 +40,9 @@ div.div-login {
             <button type="button" id="login-popover" class="btn btn-md btn-danger login-no" data-toggle="popover" title="Login Form" data-placement="bottom">LogIn</button>
             <button type="button" id="register-view" class="btn btn-md btn-danger login-no">Register</button>
             <div class="login-status login-hide">
-                <button type="button" id="mypage-view" class="btn btn-md btn-info">myPage</button>
-                <button type="button" id="reservation-view" class="btn btn-md btn-info" onclick=location.href="ShowReservations.html">Reservation</button>
+
+                <button type="button" id="myInfo-view" class="btn btn-md btn-info">내 정보</button>
+                <button type="button" id="reservation-view" class="btn btn-md btn-info" onclick=location.href="ShowReservations.html">예약현황</button>
                 <button type="button" id="logout" class="btn btn-md btn-danger">LogOut</button>
             </div>
         </div>
@@ -70,13 +71,23 @@ div.div-login {
 <script>
 'use strict'
 
+//내 정보 화면으로 이동
+$('#myInfo-view').click(()=>{
+    //console.log(loginUser);
+    if (loginUser != undefined || loginUser != '') {
+        location.href = 'myInfo.html';
+    }
+});
+
+//회원가입 화면이동
 $('#register-view').click(()=>{
     location.href = "register.html";
 });
 
 //로그아웃------------------------------------------------
 $('#logout').click(()=>{
-    $.get(`${serverApiAddr}/json/auth/logOut`, 
+    $.get(
+        `${serverApiAddr}/json/auth/logOut`, 
         ()=>{
             swal({  //SweetAlert plugin 사용
                     title: '로그아웃 하시겠습니까?',
