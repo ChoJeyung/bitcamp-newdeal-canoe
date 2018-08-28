@@ -78,7 +78,7 @@ $('#register-view').click(()=>{
 $('#logout').click(()=>{
     $.get(`${serverApiAddr}/json/auth/logOut`, 
         ()=>{
-            swal({
+            swal({  //SweetAlert plugin 사용
                     title: '로그아웃 하시겠습니까?',
                     type: 'warning',
                     showCancelButton: true,
@@ -90,8 +90,6 @@ $('#logout').click(()=>{
                     if (result.value) {
                         loginUser = '';
                         location.href = 'main.html';
-                        // setTimeout(() => {
-                        // }, 3000);
                     }
                 })
         });
@@ -115,9 +113,6 @@ $('#logout').click(()=>{
             }
     });
 
-
-
-
     //로그인 시
     $('body').on('click', '.popover-body .loginBtn', (e) => {
         //console.log($($('.fId')[1]).val());
@@ -131,12 +126,11 @@ $('#logout').click(()=>{
             (result) => {
                 console.log(result)
                 if (result.status === 'success') {
-                    //alert("로그인 성공~");
-                    //location.href = 'main.html'; <- 로그인 성공시 main.html로. 어차피 여기도 main에 포함되므로 여기서 onload로 세션 null체크 
                     loginUser = result.loginUser;
-                    $('.login-no').addClass('login-hide');
-                    $('.login-status').removeClass('login-hide');
-                    $('#login-popover').popover('hide');
+                    location.href = 'main.html';
+                    // $('.login-no').addClass('login-hide');
+                    // $('.login-status').removeClass('login-hide');
+                    // $('#login-popover').popover('hide');
                 } else {
                     alert('로그인 실패!');
                 }
@@ -151,9 +145,9 @@ $('#logout').click(()=>{
     //popever 로그인창 띄우기
     $(function () {
         $('#login-popover').popover({
-            /* container: 'body', */
-            html: true, 
+            // container: 'body',
             // trigger: 'focus',
+            html: true, 
 	        content: function() {
                 return $('#popover-login-form').html();
             }
