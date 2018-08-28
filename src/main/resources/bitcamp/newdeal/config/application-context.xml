@@ -75,6 +75,6 @@
 	<!-- 파일시스템 = file:
 	클래스패스 = classpath:
 	이런식으로 경로명 앞에 붙여줘야한다 -->
-	<context:property-placeholder location="classpath:bitcamp/newdeal/config/jdbc.properties"/>
+	<context:property-placeholder location="classpath:bitcamp/newdeal/config/jdbc2.properties"/>
 
 </beans>

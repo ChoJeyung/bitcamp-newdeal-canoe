@@ -14,8 +14,13 @@
 	</resultMap>
 
 	<select id="selectList" resultMap="memberMap">
-		select *
-		from P0_MEMB
+        SELECT
+            MNO,
+            MID,
+            NAME,
+            SDT,
+            MDT
+		FROM P0_MEMB
 	</select>
 	
 	<select id="findByIdAndPassword" parameterType="map" resultMap="memberMap">
@@ -23,6 +28,31 @@
 	   FROM P0_MEMB
 	   WHERE MID=#{id} AND PWD=PASSWORD(#{password})
 	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+	   INSERT INTO P0_MEMB (MID, NAME, PWD, SDT, MDT)
+	   VALUES(#{memberId}, #{memberName}, PASSWORD(#{memberPwd}), NOW(), NOW())
+	</insert>
+	
+	<select id="findByNo" parameterType="int" resultMap="memberMap">
+        SELECT
+            MNO,
+            MID,
+            NAME
+		FROM P0_MEMB
+		WHERE MNO=#{memberNo}
+	</select>
+	
+    <update id="updateMember" parameterType="Member">
+        UPDATE P0_MEMB
+        SET
+            NAME=#{memberName},
+            MDT=NOW()
+            <if test="memberPwd != null and memberPwd != ''">
+            ,PWD=PASSWORD(#{memberPwd})
+            </if>
+        WHERE MNO=#{memberNo}
+    </update>
 </mapper>
 
 
