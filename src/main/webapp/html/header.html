@@ -143,12 +143,22 @@ $('#logout').click(()=>{
                     // $('.login-status').removeClass('hide');
                     // $('#login-popover').popover('hide');
                 } else {
-                    alert('로그인 실패!');
+                    swal({
+                        type: 'error',
+                        title: '로그인 실패',
+                        text: '아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다'
+                        //,footer: '<a href>Why do I have this issue?</a>'
+                    })
                 }
             }, 
             'json')
             .fail((e) => {
-                alert('서버 요청 중 오류 발생!');
+                swal({
+                    type: 'error',
+                    title: '서버 요청 중 오류 발생!'
+                    //,text: '오류 내용'
+                    //,footer: '<a href>Why do I have this issue?</a>'
+                })
                 console.log(e);
             });
     });

@@ -31,7 +31,8 @@ div.search-group {
 </style>
 
 <div class="search-login-bar row bg-primary">
-    <div class="search-group col-lg-4">
+    <div class="search-group col-lg-12">
+    <!-- <div class="search-group col-lg-4"> -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="reserve-search row justify-content-md-center">
                 
@@ -59,9 +60,9 @@ div.search-group {
 
                 <!-- 인원수 -->
                 <div class="input-group">
-                    <button class="btn btn-info col-3" type="button" id="button-addon5"><i class="fas fa-minus fa-xs"></i></button>
-                    <input type="text" class="form-control col-lg-6 col-6" placeholder="인원" value="1" aria-label="인원" aria-describedby="button-addon5">
-                    <button class="btn btn-info col-3" type="button" id="button-addon5"><i class="fas fa-plus fa-xs"></i></button>
+                    <button class="btn btn-info col-3" type="button" id="dec-person-btn"><i class="fas fa-minus fa-xs"></i></button>
+                    <input type="text" class="form-control col-lg-6 col-6" id="cnt-person"placeholder="인원수" aria-label="인원">
+                    <button class="btn btn-info col-3" type="button" id="inc-person-btn"><i class="fas fa-plus fa-xs"></i></button>
                 </div>
                     
                 <!-- 좌석등급 -->
@@ -90,5 +91,43 @@ div.search-group {
         miniDate = $('#datepicker1').val();  
         $('#datepicker2').datepicker( "option", "minDate", miniDate);
     });
+
+    //인원수 증가 버튼
+    $('#inc-person-btn').click(()=>{
+        if (limitPerson('inc')) return;
+        $('#cnt-person').val(+$('#cnt-person').val() + 1);
+    });
+
+    //인원수 감소 버튼
+    $('#dec-person-btn').click(()=>{
+        if (limitPerson('dec')) return;
+        $('#cnt-person').val(+$('#cnt-person').val() - 1);
+    });
+
+    function limitPerson(param) {
+
+        if (param == 'inc') {
+            if ($('#cnt-person').val() >= 10){
+                swal({
+                        type: 'warning',
+                        title: '최대 10명까지 가능합니다.',
+                });
+                return true;
+            }
+        }
+
+        if (param == 'dec') {
+            if ($('#cnt-person').val() <= 1) {
+                swal({
+                        type: 'warning',
+                        title: '1명 이상 가능합니다.',
+                });
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 // 검색 관련 --------------------------------------------
 </script>
