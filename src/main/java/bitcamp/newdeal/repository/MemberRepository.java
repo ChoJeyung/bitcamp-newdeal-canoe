@@ -11,4 +11,10 @@ public interface MemberRepository {
 
     Member findByIdAndPassword(Map<String, Object> params);
 
+    int insertMember(Member member);
+
+    Member findByNo(int memberNo);
+
+    int updateMember(Member member);
+
 }

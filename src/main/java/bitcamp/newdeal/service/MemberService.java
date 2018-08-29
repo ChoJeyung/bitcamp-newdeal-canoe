@@ -10,4 +10,10 @@ public interface MemberService {
 
     Member getMember(String id, String password);
 
+    int register(Member member);
+
+    Member myInfo(int memberNo);
+
+    int myInfoModify(Member member);
+
 }

@@ -8,4 +8,8 @@ public interface TravelService {
 
 	List<Travel> list();
 
+	Travel get(int no);
+
+	List<Travel> showReservations(int no);
+
 }
