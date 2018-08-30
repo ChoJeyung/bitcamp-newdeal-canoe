@@ -1,15 +1,19 @@
 <style>
 
-.container {
+/* .container {
     position:relative;
-}
+} */
+
 .search-login-bar.row {
     /* background-color: #2ea4e7; */
     /* background-image:url("../img/worldmap.jpg"); */
     /* background-size: cover;  */
+    background-image: url(../img/grim.jpg);
+    background-size: 100%;
     margin: 0px 0px;
 }
 div.reserve-search.row {
+    background-color: rgba(26, 78, 190, 0.493);
     margin: 0px;
 }
 div.reserve-search .input-group {
@@ -33,18 +37,28 @@ div.search-group {
     color:white;
 }
 
-
+#input-sap {
+    position: relative;
+}
+#input-sap-list-ul {
+    position: absolute;
+    top:38px;
+    z-index: 1;
+}
 </style>
 
-<div class="search-login-bar row bg-primary">
+<div class="search-login-bar row">
+<!-- <div class="search-login-bar row bg-primary"> -->
     <div class="search-group col-lg-6 col-md-8 col-sm-10">
     <!-- <div class="search-group col-lg-4"> -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary"> -->
             <div class="reserve-search row justify-content-md-center">
                 
                 <!-- 출발지 -->
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control" placeholder="출발지" aria-label="출발지" aria-describedby="startAp">
+                    <input type="text" id="input-sap" class="form-control" placeholder="출발지" aria-label="출발지" aria-describedby="startAp">
+                    <ul id="input-sap-list-ul" class="list-group"></ul>
                     <div class="input-group-append">
                         <button class="btn btn-info" type="button" id="startAp"><i class="fas fa-map-marker-alt"></i></button>
                     </div>
@@ -52,7 +66,8 @@ div.search-group {
                 
                 <!-- 도착지 -->
                 <div class="input-group col-md-6">
-                    <input type="text" class="form-control" placeholder="도착지" aria-label="도착지" aria-describedby="arrivalAp">
+                    <input type="text" id="input-aap" class="form-control" placeholder="도착지" aria-label="도착지" aria-describedby="arrivalAp">
+                    <ul id="input-aap-list-ul" class="list-group"></ul>
                     <div class="input-group-append">
                         <button class="btn btn-info" type="button" id="arrivalAp"><i class="fas fa-map-marker-alt"></i></button>
                     </div>
@@ -102,9 +117,55 @@ div.search-group {
     </div> <!-- search-group end -->
     
 </div>
+<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+<script id="search-li-template" type="text/x-handlebars-template">
+    {{#each list}}
+        <li data-ano="{{airportNo}}" class="list-group-item list-group-item-action">{{airportName}}</li>
+    {{/each}}
+</script>
 
 <script>
-'use strict'
+    'use strict'
+
+    $('#input-sap-list-ul').on('click', 'li', (e)=>{
+        $('#input-sap-list-ul').html('');
+        $('#input-sap').val($(e.target).text());
+        $('#input-sap').attr('data-ano', $(e.target).attr('data-ano'));
+    });
+
+
+    let searchLiTemplateSrc = $('#search-li-template').text();
+    let searchTemplate = Handlebars.compile(searchLiTemplateSrc);
+    $('#input-sap').focus(function(){
+        $(this).val('');
+        $('#input-aap').val('');
+    });
+    $('#input-sap').keyup(function() {
+        console.log($(this).val());
+        if ($(this).val() == '' || $(this).val() == undefined) {
+            $('#input-sap-list-ul').html('');
+            return;
+        }
+        $.getJSON(
+            `${serverApiAddr}/json/airport/sapSearch`,
+            {
+                word: $(this).val()
+            },
+            (result)=>{
+                console.log(result);
+                $('#input-sap-list-ul').html(searchTemplate(result));
+        });
+    });
+
+
+    //ShowSearchResult/1/15/2018-08-24
+    $('#search-btn').click(()=>{
+        let sap = $('#input-sap').attr('data-ano');
+        let aap = $('#input-aap').attr('data-ano');
+        let sdt = $('#datepicker1').val();
+        location.href=`ShowSearchResult.html?sap=${sap}&aap=${aap}&sdt=${sdt}`;
+    });
+
 // 검색 관련 --------------------------------------------
     // 출발날짜/ 귀국날짜 datepicker - jquery-ui
     var miniDate;

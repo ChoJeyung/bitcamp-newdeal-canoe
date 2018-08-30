@@ -8,12 +8,33 @@
 <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
 <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+<style>
+#search-result-bg {
+    margin-top: 20px;
+    /* background-color: blue; */
+    width: 100%;
+    height:200px;
+    position: relative;
+    /* background-image: url("../img/28_Days_Later_hazard.jpg"); */
+    background-size: contain;
+}
+#search-result-bg h1 {
+    text-align: left;
+    position: absolute;
+    bottom: 0px;
+    left: 10%;
+}
+</style>
 </head>
 
 <body>
 	<div class="container">
 		<section id="navbar-login"></section>
-		<section id="content-top"></section>
+		<section id="content-top">
+			<div id="search-result-bg" class="bg-light">
+				<h1>검색 결과</h1>
+			</div>
+		</section>
 		<section id="content-middle"></section>
 		<!-- <div class="row" id="card"></div> -->
 	</div>
@@ -38,4 +59,10 @@
 	<script src="../js/jquery.bit.js"></script>
 	<script src="../js/common.js"></script>
 	<script src="ShowSearchResult.js"></script>
+	<script>
+		'use strict'
+		$('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+		//$('#content-top').load(`${serverApiAddr}/html/search.html`);
+		//$('#content-middle').load(`${serverApiAddr}/html/travel.html`);
+	</script>
 </html>

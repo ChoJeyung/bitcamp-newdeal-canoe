@@ -2,8 +2,11 @@
 var liTemplateSrc = $('#li-template').text();
 var template = Handlebars.compile(liTemplateSrc);
 
+var { sap, aap, sdt } = $.parseQuery(location.href);
+console.log('sap = ', sap);
+console.log('aap = ', aap);
+console.log('sdt = ', sdt);
 loadList();
-var { page, size } = $.parseQuery(location.href);
 
 let cardbody = $('.card');
 let data = null;
@@ -11,7 +14,7 @@ let data = null;
 
 function loadList() {
 	//출발 공항 번호/도착 공항 번호/출발 날짜/도착 날짜
-    $.getJSON(`${serverApiAddr}/json/travel/ShowSearchResult/1/15/2018-08-24`, (result) => {
+    $.getJSON(`${serverApiAddr}/json/travel/ShowSearchResult/${sap}/${aap}/${sdt}`, (result) => {
         var html = template(result);
         data = result;
         $('#content-middle').html(html);

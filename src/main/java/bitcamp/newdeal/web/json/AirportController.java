@@ -40,5 +40,15 @@ public class AirportController {
 		result.put("airport", airport);
 		return result;
 	}
+	   
+    @GetMapping("sapSearch")
+    public Object sapSearch(String word) {
+        System.out.println(word);
+        HashMap<String, Object> result = new HashMap<>();
+        List<Airport> list = airportService.sapSearch(word);
+        result.put("status", "success");
+        result.put("list", list);
+        return result;
+    }
 
 }

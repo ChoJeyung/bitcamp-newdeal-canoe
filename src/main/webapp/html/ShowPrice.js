@@ -38,7 +38,7 @@ function loadList() {
 		}
     	data = result;
         var html = template(result);
-        $('#card').html(html);
+        $('#content-middle').html(html);
     })
 }
 
