@@ -16,4 +16,6 @@ public interface MemberService {
 
     int myInfoModify(Member member);
 
+    String checkId(String id);
+
 }

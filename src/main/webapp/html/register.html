@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Canoe!</title>
-<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" /> -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
+<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 <style>
 
 .container {
@@ -43,7 +42,20 @@
     bottom: 0px;
     left: 10%;
 }
+#check-id-modal {
+    min-width: 350px;
+}
 
+.input-id.row {
+    margin: 0px;
+}
+.hide {
+    display: none;
+}
+
+#check-id-result{
+    margin-right: auto;
+}
 </style>
 </head>
 <body>
@@ -61,7 +73,13 @@
                 <div class="form-group row">
                     <label for="input-id" class="col-sm-4 col-md-6 col-4 col-form-label">Id</label>
                     <div class="col-sm-8 col-md-6 col-8">
-                        <input type="text" class="form-control" id="input-id" placeholder="아이디">
+                        <div class="input-id row">
+                            <input type="text" class="form-control-plaintext col-sm-8 col-12" id="input-id" placeholder="아이디" readonly>
+                            <!-- Button trigger modal --> 
+                            <button type="button" class="btn btn-primary col-sm-4 col-12" data-toggle="modal" data-target="#check-id-modal">
+                                중복검사
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -94,8 +112,31 @@
         </section>
         <!-- <section id="search-bar"></section>
         <section id="travel-list"></section> -->
-
-
+        
+        <!-- Modal -->
+        <div class="modal fade" id="check-id-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">아이디 중복검사</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <input type="text" id="check-id-input" class="form-control col-md-8" placeholder="6자 이상 입력하세요">
+                            <button type="button" id="check-id-btn" class="btn btn-primary col-md-4" disabled="disabled">중복검사</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span id="check-id-result"></span>
+                        <button type="button" id="check-id-use" class="btn btn-primary hide" data-dismiss="modal">사용</button>
+                        <button type="button" id="check-id-close" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Modal end -->
 
     </div>
     <!-- container end -->
@@ -107,6 +148,44 @@
     <script src="../js/common.js"></script>
     <script>
         'use strict'
+
+        // 아이디 중복검사 후 사용 버튼
+        $('#check-id-use').click(()=>{
+            $('#input-id').val($('#check-id-input').val());
+        });
+        
+        // 아이디 입력창
+        $('#check-id-input').keyup((e)=>{
+            $('#check-id-result').text('');
+            $('#check-id-use').addClass('hide');
+            if ($(e.target).val().length < 6) {
+                $('#check-id-btn').prop('disabled', 'disabled');
+                return;
+            }
+            $('#check-id-btn').prop('disabled', '');
+        });
+        
+        // 아이디 중복검사
+        $('#check-id-btn').click(()=>{
+            $.get(
+                `${serverApiAddr}/json/member/checkId`,
+                {
+                    id: $('#check-id-input').val()
+                },
+                (result)=>{
+                    if (result) {
+                        $('#check-id-result').text('이미 사용중인 아이디입니다.');
+                        $('#check-id-use').addClass('hide');
+                    } else {
+                        $('#check-id-result').text('사용 가능한 아이디입니다.');
+                        $('#check-id-use').removeClass('hide');
+                    }
+                },
+                'text'            
+            );
+        });
+
+
         //header 불러오기
         $('#navbar-login').load(`${serverApiAddr}/html/header.html`);
             // $('#search-bar').load(`${serverApiAddr}/html/search.html`);
@@ -114,26 +193,58 @@
 
         //회원가입 관련 ---------------------------------------------------
         $('#register-submit').click(()=>{
-            //console.log($('#register-form input'));
+
+            var id = $('#input-id').val();
+            var name = $('#input-name').val();
+            var password = $('#input-password').val();
+            var regex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/;
+
+            if (id == '' || name == '' || password == '') {
+                swal({
+                    title: '모든 항목을 입력해주세요!',
+                    type: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: '예'
+                });
+                return;
+            }
+            if (regex.test(password) == false) {
+                swal({
+                    title: '영어, 숫자, 특수문자를 포함하여 4~12자리로 입력하세요!',
+                    type: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: '예'
+                });
+                $('#input-password').focus();
+                return;
+            }
+                
             $.post(
                 `${serverApiAddr}/json/member/register`, 
                 {
-                    memberId:         $('#input-id').val(),
+                    memberId:   id,
                     //memberEmail:      $('#input-email').val(),
-                    memberName:       $('#input-name').val(),
-                    memberPwd:   $('#input-password').val()
+                    memberName: name,
+                    memberPwd:  password
                 }, 
                 (result)=>{
                     if (result.status === 'success') {
                         $('#register-submit').prop('disabled', true);
-                        alert('가입을 축하합니다!');
+                        swal({
+                            title: '가입을 축하합니다!',
+                            type: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: '확인'
+                        }).then(()=>{
+                            location.href = 'main.html';
+                        });
                         setTimeout(() => {
                             location.href = 'main.html';
-                        }, 3000);
+                        }, 2000);
                     } else {
                         alert('회원가입 실패!');
                     }
-                });
+            });
         });
 
         //회원가입 관련 end -----------------------------------------------
