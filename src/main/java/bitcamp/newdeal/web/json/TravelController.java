@@ -1,7 +1,12 @@
 package bitcamp.newdeal.web.json;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import bitcamp.newdeal.domain.Airport;
+import bitcamp.newdeal.domain.Member;
 import bitcamp.newdeal.domain.Travel;
 import bitcamp.newdeal.service.TravelService;
 
@@ -42,9 +48,32 @@ public class TravelController {
 		return result;
 	}
 
-	@GetMapping("showReservation/{no}")
-	public Object showReservation(@PathVariable int no) {
-		List<Travel> travel = travelService.showReservations(no);
+	@GetMapping("showReservation")
+	public Object showReservation(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		List<Travel> travel = travelService.showReservations(loginUser.getMemberNo());
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
+		result.put("list", travel);
+		return result;
+	}
+	
+	@GetMapping("ShowSearchResult/{startAPNo}/{arriveAPNo}/{startDate}")
+	public Object showSearchResult(@PathVariable int startAPNo, @PathVariable int arriveAPNo, 
+									@PathVariable String startDate) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		Date sdt = sdf.parse(startDate);
+		List<Travel> travel = travelService.showSearchResult(startAPNo, arriveAPNo, sdf.format(sdt));
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
+		result.put("list", travel);
+		return result;
+	}
+	
+	@GetMapping("showFutureReservation")
+	public Object showFutureReservation(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		List<Travel> travel = travelService.showFutureReservation(loginUser.getMemberNo());
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("status", "success");
 		result.put("list", travel);

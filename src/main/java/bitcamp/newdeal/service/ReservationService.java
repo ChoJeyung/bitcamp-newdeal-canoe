@@ -10,8 +10,10 @@ public interface ReservationService {
 
 	Reservation get(int no);
 
-	int delete(int no);
+	int delete(int no, int travelNo, int seatClass);
 
 	int insert(int memberNo, int travelNo, int seatClass);
+
+	List<Reservation> futureList(int memberNo);
 
 }

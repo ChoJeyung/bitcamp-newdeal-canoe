@@ -34,7 +34,7 @@ function loadList() {
 
 function cancelReserv() {
 	$.getJSON
-	(`${serverApiAddr}/json/reservation/CancelReservation/`+json.result.reservationNo, (result) => {
+	(`${serverApiAddr}/json/reservation/CancelReservation/`+json.result.reservationNo+"/"+json.result.travelNo+"/"+json.result.seatClass, (result) => {
 		location.href="ShowReservations.html";
     })
 }
