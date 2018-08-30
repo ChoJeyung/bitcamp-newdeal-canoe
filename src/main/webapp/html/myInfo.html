@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Canoe!</title>
-<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" /> -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
+<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 <style>
 
 .container {
@@ -138,7 +137,6 @@
                 `${serverApiAddr}/json/member/myInfo`, 
                 (result)=>{
                     console.log(result.member);
-                    //$('#input-id').val(result.member.memberId);
                     $('#input-name').val(result.member.memberName);
             });
         }
@@ -149,8 +147,6 @@
             $(this).addClass('modify-hide');
             $('.modify-confirm').removeClass('modify-hide');
             $('#register-form input').prop('readonly', '');
-            // $('#register-form input').removeClass('form-control');
-            // $('#register-form input').addClass('form-control');
         });
         
         //수정 취소
@@ -158,8 +154,6 @@
             $('.modify-confirm').addClass('modify-hide');
             $('#modify-view').removeClass('modify-hide');
             $('#register-form input').prop('readonly', true);
-            // $('#register-form input').addClass('form-control');
-            // $('#register-form input').removeClass('form-control');
             getMyInfo();
         });
 
