@@ -210,10 +210,20 @@ div.search-group {
 
 
     //ShowSearchResult/1/15/2018-08-24
+    // 검색 버튼
     $('#search-btn').click(()=>{
         let sap = $('#input-sap').attr('data-ano');
         let aap = $('#input-aap').attr('data-ano');
         let sdt = $('#datepicker1').val();
+        if (sap == '' || aap == '' || sdt == '') {
+            swal({
+                title: '모든 항목을 입력해주세요!',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: '예'
+            });
+            return;
+        }
         location.href=`ShowSearchResult.html?sap=${sap}&aap=${aap}&sdt=${sdt}`;
     });
 

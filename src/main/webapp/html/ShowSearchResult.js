@@ -16,6 +16,7 @@ function loadList() {
 	//출발 공항 번호/도착 공항 번호/출발 날짜/도착 날짜
     $.getJSON(`${serverApiAddr}/json/travel/ShowSearchResult/${sap}/${aap}/${sdt}`, (result) => {
         var html = template(result);
+        console.log(result);
         data = result;
         $('#content-middle').html(html);
     })
