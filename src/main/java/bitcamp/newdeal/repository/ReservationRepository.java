@@ -15,4 +15,9 @@ public interface ReservationRepository {
 
 	int insert(HashMap<String, Object> params);
 
+	int decSeat(HashMap<String, Object> params);
+	
+	int incSeat(HashMap<String, Object> params);
+
+	List<Reservation> selectFutureList(int memberNo);
 }

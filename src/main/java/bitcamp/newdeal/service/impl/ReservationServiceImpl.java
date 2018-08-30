@@ -31,8 +31,12 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public int delete(int no) {
+	public int delete(int no, int travelNo, int seatClass) {
 		// TODO Auto-generated method stub
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("travelNo", travelNo);
+		params.put("seatClass", seatClass);
+		reservationRepository.incSeat(params);
 		return reservationRepository.delete(no);
 	}
 
@@ -43,7 +47,14 @@ public class ReservationServiceImpl implements ReservationService {
 		params.put("memberNo", memberNo);
 		params.put("travelNo", travelNo);
 		params.put("seatClass", seatClass);
+		reservationRepository.decSeat(params);
 		return reservationRepository.insert(params);
+	}
+
+	@Override
+	public List<Reservation> futureList(int memberNo) {
+		// TODO Auto-generated method stub
+		return reservationRepository.selectFutureList(memberNo);
 	}
 
 }

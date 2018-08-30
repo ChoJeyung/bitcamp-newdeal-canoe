@@ -7,14 +7,14 @@ var { page, size } = $.parseQuery(location.href);
 
 let cardbody = $('.card');
 let data = null;
-
+var json;
 
 function loadList() {
 	var no = $.parseQuery(location.href);
 	console.log(no);
 	var url =  `${serverApiAddr}/json/travel/`+no.travelNo;
 	console.log(url);
-	var json = (function () {
+	json = (function () {
 		var json = null;
 		$.ajax({
 			'async': false,
@@ -41,10 +41,12 @@ function loadList() {
         $('#card').html(html);
     })
 }
-function makeReserv(){
+
+function makeReserv(seatClass){
+	
 	console.log(data);
 	$.getJSON
-	(`${serverApiAddr}/json/reservation/MakeReservation/`+"1/"+json.list.travelNo+"/1", (result) => {
+	(`${serverApiAddr}/json/reservation/MakeReservation/`+"1/"+json.list.travelNo+"/"+seatClass, (result) => {
 		location.href="ShowReservations.html";
     })
 }

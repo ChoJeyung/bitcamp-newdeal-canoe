@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import bitcamp.newdeal.domain.Member;
 import bitcamp.newdeal.domain.Reservation;
 import bitcamp.newdeal.service.ReservationService;
 
@@ -25,9 +26,10 @@ public class ReservationController {
 		this.reservationService = reservationService;
 	}
 
-	@GetMapping("list/{no}")
-	public Object list(@PathVariable int no) {
-		List<Reservation> list = reservationService.list(no);
+	@GetMapping("list")
+	public Object list(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		List<Reservation> list = reservationService.list(loginUser.getMemberNo());
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("status", "success");
 		result.put("list", list);
@@ -43,10 +45,9 @@ public class ReservationController {
 		return result;
 	}
 
-	@GetMapping("CancelReservation/{no}")
-	public Object delete(@PathVariable int no) {
-		System.out.println(no);
-		reservationService.delete(no);
+	@GetMapping("CancelReservation/{reservNo}/{travelNo}/{seatClass}")
+	public Object delete(@PathVariable int reservNo, @PathVariable("travelNo") int travelNo, @PathVariable("seatClass") int seatClass) {
+		reservationService.delete(reservNo, travelNo, seatClass);
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("status", "success");
 		return result;
@@ -57,6 +58,16 @@ public class ReservationController {
 		reservationService.insert(memberNo, travelNo, seatClass);
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("status", "success");
+		return result;
+	}
+	
+	@GetMapping("futureList")
+	public Object futureList(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		List<Reservation> list = reservationService.futureList(loginUser.getMemberNo());
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
+		result.put("list", list);
 		return result;
 	}
 }

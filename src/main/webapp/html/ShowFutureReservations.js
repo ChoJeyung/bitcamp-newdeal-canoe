@@ -7,7 +7,7 @@ var { page, size } = $.parseQuery(location.href);
 
 let cardbody = $('.card');
 let data = null;
-var url =  `${serverApiAddr}/json/reservation/list`;
+var url =  `${serverApiAddr}/json/reservation/futureList`;
 console.log(url);
 var json = (function () {
 	var json = null;
@@ -23,7 +23,7 @@ var json = (function () {
 	return json;
 })();
 function loadList() {
-    $.getJSON(`${serverApiAddr}/json/travel/showReservation`, (result) => {
+    $.getJSON(`${serverApiAddr}/json/travel/showFutureReservation`, (result) => {
     	console.log(result)
     	for (var i = 0; i < result.list.length; i++) {
 			result.list[i].reservationNo = json.list[i].reservationNo;

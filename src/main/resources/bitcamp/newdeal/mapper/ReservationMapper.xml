@@ -36,4 +36,26 @@
 	   insert into P0_RSV(MNO, TNO, CLS)
 	   VALUES(#{memberNo}, #{travelNo}, #{seatClass})
 	</insert>
+	
+	<update id="decSeat" parameterType="map">
+	   update P0_GRD
+	   set SNO = SNO -1
+	   where TNO = #{travelNo} AND CLS = #{seatClass}
+	</update>
+	
+	<update id="incSeat" parameterType="map">
+       update P0_GRD
+       set SNO = SNO +1
+       where TNO = #{travelNo} AND CLS = #{seatClass}
+    </update>
+    
+    <select id="selectFutureList" resultMap="reservationMap"
+        parameterType="int">
+        select *
+        from P0_RSV rsv
+        join P0_TRVL trv on rsv.TNO=
+        trv.TNO
+        where MNO = #{value} 
+        and SDT > NOW();
+    </select>
 </mapper>

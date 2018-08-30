@@ -10,22 +10,19 @@
 </head>
 
 <body>
-<h1>좌석 등급, 가격 보기</h1>
 	<div class="container">
 		<div class="row" id="card"></div>
 	</div>
 	<!-- .container -->
 	<script id="li-template" type="text/x-handlebars-template">
 		{{#each list}}
-		<div class="card text-white bg-dark mb-3 col-5" style="max-width: 30rem; margin: 20px;">
-				<div class="card-header">{{startName}} -> {{arriveName}}</div>
+		<div class="card text-white bg-info mb-3 col-12" onclick={location.href="ShowPrice.html?travelNo={{travelNo}}"}
+            style="max-width: 30rem; margin: 20px;">
+				<div class="card-header">{{startAirportName}} -> {{arriveAirportName}}</div>
 				<div class="card-body">
 					<h4 class="card-title"></h4>
-                    <p class="card-text">{{arriveTravelTime}} -> {{startTravelTime}}</p>
-					<p class="card-text">좌석등급: {{seatClass}} 등석</p>
-					<p class="card-text">가격: {{price}} 원</p>
-                    <p class="card-text">잔여좌석수: {{seatQnt}}</p>
-                    <button type="button" class="btn btn-outline-success" onclick="makeReserv({{seatClass}})">예약하기</button>
+					<p class="card-text">출발: {{startTravelTime}}</p>
+					<p class="card-text">도착: {{arriveTravelTime}}</p>
 				</div>
 			</div>
 			{{/each}}
@@ -36,5 +33,5 @@
 	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../js/jquery.bit.js"></script>
 	<script src="../js/common.js"></script>
-	<script src="ShowPrice.js"></script>
+	<script src="ShowSearchResult.js"></script>
 </html>
