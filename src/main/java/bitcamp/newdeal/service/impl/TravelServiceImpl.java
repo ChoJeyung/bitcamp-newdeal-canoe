@@ -54,4 +54,10 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.showFutureReservation(memberNo);
 	}
 
+	@Override
+	public List<Travel> selectAAirport(int no) {
+		// TODO Auto-generated method stub
+		return travelRepository.findByStartAP(no);
+	}
+
 }

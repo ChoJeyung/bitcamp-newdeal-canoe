@@ -17,4 +17,6 @@ public interface TravelService {
 
 	List<Travel> showFutureReservation(int memberNo);
 
+	List<Travel> selectAAirport(int no);
+
 }
