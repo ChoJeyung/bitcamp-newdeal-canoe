@@ -106,6 +106,7 @@
         TR.AAP = #{arriveAPNo}
         and
         DATE(TR.SDT) = #{startDate}
+        ORDER BY TR.SDT
     </select>
 </mapper>
 
