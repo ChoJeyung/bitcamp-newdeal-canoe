@@ -14,7 +14,7 @@ function loadList() {
     $.getJSON(`${serverApiAddr}/json/travel/ShowSearchResult/1/15/2018-08-24`, (result) => {
         var html = template(result);
         data = result;
-        $('#card').html(html);
+        $('#content-middle').html(html);
     })
 }
 

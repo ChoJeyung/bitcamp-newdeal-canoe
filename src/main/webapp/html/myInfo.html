@@ -159,6 +159,18 @@
 
         //수정 확인
         $('#modify-submit').click(()=>{
+            var password = $('#input-password').val();
+            var regex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/;
+            if (regex.test(password) == false) {
+                swal({
+                    title: '영어, 숫자, 특수문자를 포함하여 4~12자리로 입력하세요!',
+                    type: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: '예'
+                });
+                $('#input-password').focus();
+                return;
+            }
             $.post(
                 `${serverApiAddr}/json/member/myInfoModify`,
                 {

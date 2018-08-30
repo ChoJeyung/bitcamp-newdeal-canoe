@@ -3,20 +3,24 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<title>Canoe!</title>
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" /> -->
+<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
+<link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
 	<div class="container">
-		<div class="row" id="card"></div>
+		<section id="navbar-login"></section>
+		<section id="content-top"></section>
+		<section id="content-middle"></section>
+		<!-- <div class="row" id="card"></div> -->
 	</div>
 	<!-- .container -->
 	<script id="li-template" type="text/x-handlebars-template">
 		{{#each list}}
-		<div class="card text-white bg-info mb-3 col-12" onclick={location.href="ShowPrice.html?travelNo={{travelNo}}"}
+		<div class="card text-white bg-info mb-3 col-12" onclick='location.href="ShowPrice.html?travelNo={{travelNo}}"'
             style="max-width: 30rem; margin: 20px;">
 				<div class="card-header">{{startAirportName}} -> {{arriveAirportName}}</div>
 				<div class="card-body">
