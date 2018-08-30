@@ -28,7 +28,7 @@ function loadList() {
     	result.list.seatClass = json.result.seatClass;
     	console.log(json);
         var html = template(result.list);
-        $('#card').html(html);
+        $('#content-middle').html(html);
     })
 }
 

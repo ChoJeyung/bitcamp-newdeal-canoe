@@ -10,4 +10,5 @@ public interface AirportService {
 
 	Airport get(int no);
 
+    List<Airport> sapSearch(String word);
 }

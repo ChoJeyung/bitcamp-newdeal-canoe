@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import bitcamp.newdeal.domain.Airport;
 import bitcamp.newdeal.domain.Member;
 import bitcamp.newdeal.domain.Travel;
 import bitcamp.newdeal.service.TravelService;
@@ -79,4 +78,5 @@ public class TravelController {
 		result.put("list", travel);
 		return result;
 	}
+	
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import bitcamp.newdeal.domain.Airport;
 import bitcamp.newdeal.domain.Travel;
 
 public interface TravelRepository {
@@ -17,4 +18,5 @@ public interface TravelRepository {
 	List<Travel> findByStartArriveAPNoStartDate(HashMap<String, Object> params);
 
 	List<Travel> showFutureReservation(int no);
+
 }

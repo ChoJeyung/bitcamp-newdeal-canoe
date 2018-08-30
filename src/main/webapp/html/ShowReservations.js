@@ -33,6 +33,6 @@ function loadList() {
 		}
         var html = template(result);
         data = result;
-        $('#card').html(html);
+        $('#content-middle').html(html);
     })
 }

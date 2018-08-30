@@ -3,16 +3,40 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<title>Canoe!</title>
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" /> -->
+<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
+<link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+<style>
+#search-result-grade-bg {
+    margin-top: 20px;
+    /* background-color: blue; */
+    width: 100%;
+    height:200px;
+    position: relative;
+    /* background-image: url("../img/28_Days_Later_hazard.jpg"); */
+    background-size: contain;
+}
+#search-result-grade-bg h1 {
+    text-align: left;
+    position: absolute;
+    bottom: 0px;
+    left: 10%;
+}
+</style>
 </head>
 
 <body>
-<h1>좌석 등급, 가격 보기</h1>
 	<div class="container">
-		<div class="row" id="card"></div>
+		<section id="navbar-login"></section>
+		<section id="content-top">
+			<div id="search-result-grade-bg" class="bg-light">
+				<h1>좌석 등급 결정</h1>
+			</div>
+		</section>
+		<section id="content-middle"></section>
+		<!-- <div class="row" id="card"></div> -->
 	</div>
 	<!-- .container -->
 	<script id="li-template" type="text/x-handlebars-template">
@@ -37,4 +61,10 @@
 	<script src="../js/jquery.bit.js"></script>
 	<script src="../js/common.js"></script>
 	<script src="ShowPrice.js"></script>
+	<script>
+		'use strict'
+		$('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+		//$('#content-top').load(`${serverApiAddr}/html/search.html`);
+		//$('#content-middle').load(`${serverApiAddr}/html/travel.html`);
+	</script>
 </html>

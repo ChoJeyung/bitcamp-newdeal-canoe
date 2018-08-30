@@ -28,4 +28,11 @@ public class AirportServiceImpl implements AirportService {
 		return airportRepository.selectOne(no);
 	}
 
+    @Override
+    public List<Airport> sapSearch(String word) {
+        // TODO Auto-generated method stub
+        return airportRepository.findByWord(word);
+    }
+
+
 }

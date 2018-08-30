@@ -22,6 +22,14 @@
 		from P0_AP
 		where ANO = #{value}
 	</select>
+	
+	<select id="findByWord" parameterType="string" resultMap="airportMap">
+        SELECT 
+            ANO,
+            NAME
+        FROM P0_AP
+        WHERE NAME LIKE CONCAT('%', #{value} ,'%')
+	</select>
 </mapper>
 
 
