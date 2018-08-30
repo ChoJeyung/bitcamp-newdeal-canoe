@@ -17,4 +17,6 @@ public interface TravelRepository {
 	List<Travel> findByStartArriveAPNoStartDate(HashMap<String, Object> params);
 
 	List<Travel> showFutureReservation(int no);
+
+	List<Travel> findByStartAP(int no);
 }

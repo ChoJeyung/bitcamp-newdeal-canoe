@@ -47,6 +47,15 @@ public class TravelController {
 		result.put("list", travel);
 		return result;
 	}
+	
+	@GetMapping("ShowArriveAP/{no}")
+	public Object selectAAirport(@PathVariable int no) {
+		List<Travel> travel = travelService.selectAAirport(no);
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
+		result.put("list", travel);
+		return result;
+	}
 
 	@GetMapping("showReservation")
 	public Object showReservation(HttpSession session) {
