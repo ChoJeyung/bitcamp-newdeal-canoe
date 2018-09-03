@@ -2,21 +2,23 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 
 <body>
 	<div class="container">
+		<section id="navbar-login"></section>
+		<section id="content-top"></section>
+		<section id="content-middle"></section>
 		<div class="row" id="card"></div>
 	</div>
 	<!-- .container -->
 	<script id="li-template" type="text/x-handlebars-template">
 		{{#each list}}
-		<div class="card text-white bg-info mb-3 col-12" onclick={location.href="ShowPrice.html?travelNo={{travelNo}}"}
+		<div class="card text-white bg-info mb-3 col-6" onclick={location.href="ShowPrice.html?travelNo={{travelNo}}"}
             style="max-width: 30rem; margin: 20px;">
 				<div class="card-header">{{startAirportName}} -> {{arriveAirportName}}</div>
 				<div class="card-body">
@@ -34,4 +36,11 @@
 	<script src="../js/jquery.bit.js"></script>
 	<script src="../js/common.js"></script>
 	<script src="ShowTravels.js"></script>
+	<script>
+		'use strict'
+		$('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+		$('#content-top').load(`${serverApiAddr}/html/search.html`);
+		// $('#content-middle').load(`${serverApiAddr}/html/travel.html`);
+	</script>
+
 </html>
