@@ -5,30 +5,34 @@
 <meta charset="UTF-8">
 <title>Canoe!</title>
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" /> -->
-<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
-<link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
+<link rel="stylesheet"
+	href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 <style>
 #reservation-bg {
-    margin-top: 20px;
-    /* background-color: blue; */
-    width: 100%;
-    height:200px;
-    position: relative;
-    /* background-image: url("../img/28_Days_Later_hazard.jpg"); */
-    background-size: contain;
+	margin-top: 20px;
+	/* background-color: blue; */
+	width: 100%;
+	height: 200px;
+	position: relative;
+	/* background-image: url("../img/28_Days_Later_hazard.jpg"); */
+	background-size: contain;
 }
+
 #reservation-bg h1 {
-    text-align: left;
-    position: absolute;
-    bottom: 0px;
-    left: 10%;
+	text-align: left;
+	position: absolute;
+	bottom: 0px;
+	left: 10%;
 }
 </style>
 </head>
 
 <body>
-    <div class="container">
+	<div class="container">
 		<section id="navbar-login"></section>
 		<section id="content-top">
 			<div id="reservation-bg" class="bg-light">
@@ -38,8 +42,8 @@
 		<section id="content-middle"></section>
 		<!-- <div class="row" id="card"></div> -->
 	</div>
-    <!-- .container -->
-    <script id="li-template" type="text/x-handlebars-template">
+	<!-- .container -->
+	<script id="li-template" type="text/x-handlebars-template">
         {{#each list}}
         <div class="card text-white bg-info mb-3 col-12" onclick='location.href="ShowSingleReservation.html?reservationNo={{reservationNo}}"'
             style="max-width: 30rem; margin: 20px;">
@@ -53,17 +57,17 @@
             </div>
             {{/each}}
         </script>
-    <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../js/jquery.bit.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="ShowReservations.js"></script>
-    <script>
-        'use strict'
-        $('#navbar-login').load(`${serverApiAddr}/html/header.html`);
-        //$('#content-top').load(`${serverApiAddr}/html/search.html`);
-        //$('#content-middle').load(`${serverApiAddr}/html/travel.html`);
-    </script>
+	<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.bit.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="ShowReservations.js"></script>
+	<script>
+		'use strict'
+		$('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+		//$('#content-top').load(`${serverApiAddr}/html/search.html`);
+		//$('#content-middle').load(`${serverApiAddr}/html/travel.html`);
+	</script>
 </html>
