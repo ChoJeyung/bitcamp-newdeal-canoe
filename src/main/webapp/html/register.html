@@ -172,11 +172,13 @@
         // 아이디 중복검사
         $('#check-id-btn').click(()=>{
             $.get(
-                `${serverApiAddr}/json/member/checkId`,
+                //`${serverApiAddr}/json/member/checkId`,
+                `http://localhost:8000/checkId`,
                 {
                     id: $('#check-id-input').val()
                 },
                 (result)=>{
+                    console.log(result);
                     if (result) {
                         $('#check-id-result').text('이미 사용중인 아이디입니다.');
                         $('#check-id-use').addClass('hide');

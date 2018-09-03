@@ -1,0 +1,140 @@
+<style>
+#sample-travels{
+    height: 400px;
+    overflow: hidden;
+}
+.slidein {
+    animation-duration: 1s;
+    animation-name: slidein;
+}
+@keyframes slidein {
+    from {
+        margin-left: 25%;
+        width: 100%; 
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+</style>
+
+<hr>
+
+<div class="row" id="sample-travels">
+
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/01.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/02.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/03.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/04.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/05.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/06.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/02.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/04.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-6 col-sm-4 col-md-3">
+        <div class="card mb-3">
+            <h3 class="card-header">Card header</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/05.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+'use strict'
+$('#sample-travels').on('click', '.sample-travel', ()=>{
+    $('#sample-travels > div:first-child').removeClass('slidein');
+    $('#sample-travels').append($('#sample-travels > div:first-child'));
+    $('#sample-travels > div:first-child').addClass('slidein');
+});
+
+</script>
