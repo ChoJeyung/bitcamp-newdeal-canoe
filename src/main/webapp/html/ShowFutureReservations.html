@@ -5,17 +5,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-    href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 
 <body>
-<h1>예약 목록</h1>
-    <div class="container">
-        <div class="row" id="card"></div>
-    </div>
-    <!-- .container -->
-    <script id="li-template" type="text/x-handlebars-template">
+	<h1>예약 목록</h1>
+	<div class="container">
+		<div class="row" id="card"></div>
+		<div class="footer">
+			<section id="footer"></section>
+		</div>
+	</div>
+	<!-- .container -->
+	<script id="li-template" type="text/x-handlebars-template">
         {{#each list}}
         <div class="card text-white bg-info mb-3 col-12" onclick={location.href="ShowSingleReservation.html?reservationNo={{reservationNo}}"}
             style="max-width: 30rem; margin: 20px;">
@@ -29,11 +32,14 @@
             </div>
             {{/each}}
         </script>
-    <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../js/jquery.bit.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="ShowFutureReservations.js"></script>
+	<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.bit.js"></script>
+	<script src="../js/common.js"></script>
+	<script>
+		$('#footer').load(`${serverApiAddr}/html/footer.html`);
+	</script>
+	<script src="ShowFutureReservations.js"></script>
 </html>
