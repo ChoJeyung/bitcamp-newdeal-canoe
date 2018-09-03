@@ -43,10 +43,20 @@ function loadList() {
 }
 
 function makeReserv(seatClass){
-	
-	console.log(data);
-	$.getJSON
-	(`${serverApiAddr}/json/reservation/MakeReservation/`+"1/"+json.list.travelNo+"/"+seatClass, (result) => {
-		location.href="ShowReservations.html";
-    })
+	$.get(
+		`${serverApiAddr}/json/auth/sessionCheck`, 
+		(result)=>{
+			if(result.loginUser == '' || result.loginUser == undefined) {
+				swal({
+					type: 'warning',
+					text: '로그인 후 이용할 수 있습니다.'
+				});
+				return;
+			}
+			console.log(data);
+			$.getJSON
+			(`${serverApiAddr}/json/reservation/MakeReservation/`+"1/"+json.list.travelNo+"/"+seatClass, (result) => {
+				location.href="ShowReservations.html";
+			})
+	});
 }

@@ -8,7 +8,7 @@
     /* background-color: #2ea4e7; */
     /* background-image:url("../img/worldmap.jpg"); */
     /* background-size: cover;  */
-    background-image: url(../img/grim.jpg);
+    background-image: url(../img/Stripe-100-Vertices.jpeg);
     background-size: 100%;
     margin: 0px 0px;
 }
@@ -41,6 +41,14 @@ div.search-group {
     position: relative;
 }
 #input-sap-list-ul {
+    position: absolute;
+    top:38px;
+    z-index: 1;
+}
+#input-aap {
+    position: relative;
+}
+#input-aap-list-ul {
     position: absolute;
     top:38px;
     z-index: 1;
@@ -118,27 +126,70 @@ div.search-group {
     
 </div>
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
-<script id="search-li-template" type="text/x-handlebars-template">
+<!-- 출발지 검색 리스트 템플릿 -->
+<script id="s-search-li-template" type="text/x-handlebars-template">
     {{#each list}}
         <li data-ano="{{airportNo}}" class="list-group-item list-group-item-action">{{airportName}}</li>
     {{/each}}
 </script>
+<script id="a-search-li-template" type="text/x-handlebars-template">
+    {{#each list}}
+        <li data-ano="{{arriveAirportNo}}" class="list-group-item list-group-item-action">{{arriveAirportName}}</li>
+        {{/each}}
+</script>
 
 <script>
     'use strict'
-
-    $('#input-sap-list-ul').on('click', 'li', (e)=>{
-        $('#input-sap-list-ul').html('');
-        $('#input-sap').val($(e.target).text());
-        $('#input-sap').attr('data-ano', $(e.target).attr('data-ano'));
+    
+    let searchLiTemplateSrcS = $('#s-search-li-template').text();
+    let searchTemplateS = Handlebars.compile(searchLiTemplateSrcS);
+    let searchLiTemplateSrcA = $('#a-search-li-template').text();
+    let searchTemplateA = Handlebars.compile(searchLiTemplateSrcA);
+    
+    $('#input-aap-list-ul').on('click', 'li', (e)=>{
+        $('#input-aap').val($(e.target).text());
+        $('#input-aap').attr('data-ano', $(e.target).attr('data-ano'));
+        $('#input-aap-list-ul').html('');
     });
 
+    $('#input-aap').focus(()=>{
+        let inputSap = $('#input-sap').val();
+        let sapNo = $('#input-sap').attr('data-ano');
+        console.log('inputSap = ', inputSap);
+        console.log('sapNo = ', sapNo);
+        if (inputSap == '' || inputSap == undefined) {
+            $('#input-aap-list-ul').html('');
+            return;
+        }
+        $.getJSON(
+            `${serverApiAddr}/json/travel/ShowArriveAP/${sapNo}`,
+            (result)=>{
+                console.log(result);
+                if (result.list == null || result.list == '') {
+                    swal({
+                        type: 'warning',
+                        text: '운항정보가 존재하지 않습니다.'
+                    });
+                    $('#input-sap').focus();
+                } else {
+                    $('#input-aap-list-ul').html(searchTemplateA(result));
+                }
+        });
+    });
 
-    let searchLiTemplateSrc = $('#search-li-template').text();
-    let searchTemplate = Handlebars.compile(searchLiTemplateSrc);
+    //출발지 검색창 클릭시 리셋
+    $('#input-sap-list-ul').on('click', 'li', (e)=>{
+        $('#input-sap').val($(e.target).text());
+        $('#input-sap').attr('data-ano', $(e.target).attr('data-ano'));
+        $('#input-sap-list-ul').html('');
+    });
+
+    //출발지 검색
     $('#input-sap').focus(function(){
         $(this).val('');
         $('#input-aap').val('');
+        $('#input-sap').attr('data-ano', '');
+        $('#input-aap').attr('data-ano', '');
     });
     $('#input-sap').keyup(function() {
         console.log($(this).val());
@@ -153,16 +204,26 @@ div.search-group {
             },
             (result)=>{
                 console.log(result);
-                $('#input-sap-list-ul').html(searchTemplate(result));
+                $('#input-sap-list-ul').html(searchTemplateS(result));
         });
     });
 
 
     //ShowSearchResult/1/15/2018-08-24
+    // 검색 버튼
     $('#search-btn').click(()=>{
         let sap = $('#input-sap').attr('data-ano');
         let aap = $('#input-aap').attr('data-ano');
         let sdt = $('#datepicker1').val();
+        if (sap == '' || aap == '' || sdt == '') {
+            swal({
+                title: '모든 항목을 입력해주세요!',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: '예'
+            });
+            return;
+        }
         location.href=`ShowSearchResult.html?sap=${sap}&aap=${aap}&sdt=${sdt}`;
     });
 

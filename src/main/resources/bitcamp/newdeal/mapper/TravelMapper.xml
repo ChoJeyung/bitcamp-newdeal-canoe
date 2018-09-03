@@ -109,19 +109,14 @@
     </select>
     
     <select id="findByStartAP" resultMap="travelMap" parameterType="int">
-        select
-        TR.TNO,
-        TR.SAP,
-        TR.AAP,
-        SA.NAME SAPNAME,
-        AA.NAME AAPNAME
-        from P0_TRVL TR
-        JOIN P0_AP
-        SA ON TR.SAP = SA.ANO
-        JOIN P0_AP AA
-        ON TR.AAP = AA.ANO
-        where
-        TR.SAP = #{startAPNo}
+        SELECT
+           DISTINCT TR.AAP,
+             AA.NAME AAPNAME
+        FROM P0_TRVL TR
+            JOIN P0_AP AA ON TR.AAP = AA.ANO
+        WHERE
+            TR.SAP = #{no}
+            ORDER BY AAPNAME
     </select>
 </mapper>
 
