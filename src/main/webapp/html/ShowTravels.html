@@ -2,10 +2,11 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 
 <body>
@@ -14,6 +15,9 @@
 		<section id="content-top"></section>
 		<section id="content-middle"></section>
 		<div class="row" id="card"></div>
+		<div class="footer">
+			<section id="footer"></section>
+		</div>
 	</div>
 	<!-- .container -->
 	<script id="li-template" type="text/x-handlebars-template">
@@ -40,7 +44,7 @@
 		'use strict'
 		$('#navbar-login').load(`${serverApiAddr}/html/header.html`);
 		$('#content-top').load(`${serverApiAddr}/html/search.html`);
+		$('#footer').load(`${serverApiAddr}/html/footer.html`);
 		// $('#content-middle').load(`${serverApiAddr}/html/travel.html`);
 	</script>
-
 </html>
