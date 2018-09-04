@@ -18,6 +18,7 @@ function loadList() {
         var html = template(result);
         console.log(result);
         data = result;
+        $('#content-middle').html('');
         $('#content-middle').html(html);
     })
 }

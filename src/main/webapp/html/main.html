@@ -10,18 +10,11 @@
 	href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
 <link rel="stylesheet"
 	href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-<!-- <style>
 
-.container {
-    position:relative;
-    min-width: 360px;
-}
-</style> -->
 <style>
 #footer {
-	text-align: center;
 	background-image: url("../img/footer-background.jpg");
-	vertical-align: middle;
+	max-height: 63px;
 }
 </style>
 </head>
@@ -31,10 +24,9 @@
 		<section id="navbar-login"></section>
 		<section id="content-top"></section>
 		<section id="content-middle"></section>
-		<section id="travel-sample"></section>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<div class="footer">
-			<section id="footer"></section>
+		<div class="footer row">
+			<div id="footer"></div>
 		</div>
 	</div>
 
@@ -51,7 +43,7 @@
 		$('#content-top').load(`${serverApiAddr}/html/search.html`);
 		$('#footer').load(`${serverApiAddr}/html/footer.html`);
 		// $('#content-middle').load(`${serverApiAddr}/html/travel.html`);
-		//$('#travel-sample').load(`${serverApiAddr}/html/sample.html`);
+		$('#content-middle').load(`${serverApiAddr}/html/sample.html`);
 	</script>
 </body>
 </html>
