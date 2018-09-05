@@ -1,3 +1,6 @@
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id"
+	content="918556772014-u606nqhinihmeerqfvtal0010k6h3rjo.apps.googleusercontent.com">
 <style>
 .container {
 	font-family: 'Sunflower', sans-serif;
@@ -21,7 +24,7 @@
 }
 
 div.div-login {
-	width: 400px;
+	width: 600px;
 }
 
 #loginBtn {
@@ -78,7 +81,7 @@ div.div-login {
 <!-- navbar end -->
 
 <!-- 로그인 폼 2 - 팝오버 사용 -->
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 <a href="#" onclick="signOut();">Sign out</a>
 <script>
             function signOut() {
@@ -88,6 +91,7 @@ div.div-login {
                 });
             }
         </script>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
 <form id="popover-login-form" class="form-group row"
 	style="display: none">
 	<div class="login-form">
