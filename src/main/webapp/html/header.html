@@ -1,60 +1,76 @@
 <style>
-
 .container {
-    font-family: 'Sunflower', sans-serif;
-    /* font-family: 'Black Han Sans', sans-serif;
+	font-family: 'Sunflower', sans-serif;
+	/* font-family: 'Black Han Sans', sans-serif;
     font-family: 'Jua', sans-serif;
     font-family: 'Do Hyeon', sans-serif; */
-    font-size: 20px;
-    min-width: 360px;
-    position:relative;
-    /* background-image: url(../img/grim.jpg);
+	font-size: 20px;
+	min-width: 360px;
+	position: relative;
+	/* background-image: url(../img/grim.jpg);
     background-size: 100%; */
 }
 
 .form-group.row {
-    margin: 0px 15px 0px 15px;
+	margin: 0px 15px 0px 15px;
 }
-.login-form input, .login-form button{
-    margin-top: 5px;
-    margin-bottom: 5px;
+
+.login-form input, .login-form button {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 div.div-login {
-    width: 400px;
+	width: 400px;
 }
+
 #loginBtn {
-    width: 100%;
+	width: 100%;
 }
 
 .hide {
-    display: none;
+	display: none;
 }
-
-
 </style>
-<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Jua|Sunflower:300" rel="stylesheet">
-<nav id="nav-header" class="navbar navbar-expand-md navbar-dark bg-primary">
-    <a class="navbar-brand" href="main.html">Canoe!</a>
-    
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#nav-header-collpase" aria-controls="nav-header-collpase"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<link
+	href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Jua|Sunflower:300"
+	rel="stylesheet">
+<nav id="nav-header"
+	class="navbar navbar-expand-md navbar-dark bg-primary">
+	<a class="navbar-brand" href="main.html">Canoe!</a>
 
-    <div class="collapse navbar-collapse" id="nav-header-collpase">
-        <div class="nav-header-button ml-auto">
-            <button type="button" id="login-popover" class="btn btn-md btn-danger login-no" data-toggle="popover" title="Login Form" data-placement="bottom"><i class="fas fa-sign-in-alt"></i> LogIn</button>
-            <button type="button" id="register-view" class="btn btn-md btn-danger login-no"><i class="fas fa-check"></i> Register</button>
-            <div class="login-status hide">
-                <button type="button" id="myInfo-view" class="btn btn-md btn-info"><i class="fas fa-user-circle"></i> 내 정보</button>
-                <button type="button" id="reservation-view" class="btn btn-md btn-info" onclick=location.href="ShowReservations.html"><i class="fas fa-tags"></i> 예약현황</button>
-                <button type="button" id="logout" class="btn btn-md btn-danger"><i class="fas fa-sign-out-alt"></i> LogOut</button>
-            </div>
-        </div>
-        
-    </div>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#nav-header-collpase" aria-controls="nav-header-collpase"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="nav-header-collpase">
+		<div class="nav-header-button ml-auto">
+			<button type="button" id="login-popover"
+				class="btn btn-md btn-danger login-no" data-toggle="popover"
+				title="Login Form" data-placement="bottom">
+				<i class="fas fa-sign-in-alt"></i> LogIn
+			</button>
+			<button type="button" id="register-view"
+				class="btn btn-md btn-danger login-no">
+				<i class="fas fa-check"></i> Register
+			</button>
+			<div class="login-status hide">
+				<button type="button" id="myInfo-view" class="btn btn-md btn-info">
+					<i class="fas fa-user-circle"></i> 내 정보
+				</button>
+				<button type="button" id="reservation-view"
+					class="btn btn-md btn-info" onclick=location.href="ShowReservations.html">
+					<i class="fas fa-tags"></i> 예약현황
+				</button>
+				<button type="button" id="logout" class="btn btn-md btn-danger">
+					<i class="fas fa-sign-out-alt"></i> LogOut
+				</button>
+			</div>
+		</div>
+
+	</div>
 
 
 
@@ -62,16 +78,27 @@ div.div-login {
 <!-- navbar end -->
 
 <!-- 로그인 폼 2 - 팝오버 사용 -->
-<form id="popover-login-form" class="form-group row" style="display:none">
-    <div class="login-form">
-        <input type="text" class="form-control fId" placeholder="아이디">
-    </div>
-    <div class="login-form">
-        <input type="password" class="form-control fPassword" placeholder="암호">
-    </div>
-    <div class="login-form">
-        <button type="button" class="btn btn-info loginBtn">로그인</button>
-    </div>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<a href="#" onclick="signOut();">Sign out</a>
+<script>
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function() {
+                    console.log('User signed out.');
+                });
+            }
+        </script>
+<form id="popover-login-form" class="form-group row"
+	style="display: none">
+	<div class="login-form">
+		<input type="text" class="form-control fId" placeholder="아이디">
+	</div>
+	<div class="login-form">
+		<input type="password" class="form-control fPassword" placeholder="암호">
+	</div>
+	<div class="login-form">
+		<button type="button" class="btn btn-info loginBtn">로그인</button>
+	</div>
 </form>
 
 <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>

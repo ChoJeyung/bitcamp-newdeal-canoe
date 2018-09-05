@@ -33,11 +33,6 @@
 	left: 10%;
 }
 
-.card {
-	display: inline-block;
-	width: 50%;
-}
-
 .container {
 	text-align: justify;
 	position: relative;
@@ -53,13 +48,17 @@
 				<h1>검색 결과</h1>
 			</div>
 		</section>
-		<section id="content-middle"></section>
+		<div class="row">
+			<div id="content-middle-start" class="col">
+			</div>
+		</div>
 		<!-- .container -->
 		<script id="li-template" type="text/x-handlebars-template">
 
 		{{#each list}}
-		<div class="card text-white bg-info mb-3" onclick='location.href="ShowPrice.html?travelNo={{travelNo}}"'
-            style="max-width: 30rem; margin: 20px;">
+        
+		<div class="card text-white bg-info" onclick='location.href="ShowPrice.html?travelNo={{travelNo}}&adt={{adt}}&sap={{startAirportNo}}&aap={{arriveAirportNo}}"'
+            style="margin: 20px;">
 				<div class="card-header">{{startAirportName}} -> {{arriveAirportName}}</div>
 				<div class="card-body">
 					<h4 class="card-title"></h4>
@@ -67,12 +66,11 @@
 					<p class="card-text">도착: {{arriveTravelTime}}</p>
 				</div>
 			</div>
-
 			{{/each}}
 		</script>
 		<div class="footer">
-            <section id="footer"></section>
-        </div>
+			<section id="footer"></section>
+		</div>
 	</div>
 	<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>

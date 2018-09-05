@@ -3,8 +3,10 @@ var liTemplateSrc = $('#li-template').text();
 var template = Handlebars.compile(liTemplateSrc);
 
 loadList();
-var { page, size } = $.parseQuery(location.href);
-
+var { adt, aap, sap } = $.parseQuery(location.href);
+console.log("adt: "+adt);
+console.log("aap: "+aap);
+console.log("sap: "+sap);
 let cardbody = $('.card');
 let data = null;
 var json;
@@ -56,7 +58,17 @@ function makeReserv(seatClass){
 			console.log(data);
 			$.getJSON
 			(`${serverApiAddr}/json/reservation/MakeReservation/`+"1/"+json.list.travelNo+"/"+seatClass, (result) => {
-				location.href="ShowReservations.html";
+				movePage();
 			})
 	});
+}
+
+function movePage() {
+	console.log(adt);
+	if(adt !== ""){
+		location.href=`ShowSearchResult.html?sap=${aap}&aap=${sap}&sdt=${adt}`;
+	}
+	else {
+		location.href="ShowReservations.html";
+	}
 }
