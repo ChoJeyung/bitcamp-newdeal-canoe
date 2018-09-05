@@ -75,10 +75,10 @@
 
             <form id="register-form" class="col-lg-8 col-md-10 col-12">
                 <div class="form-group row">
-                    <label for="input-id" class="col-sm-4 col-md-6 col-4 col-form-label">Id</label>
+                    <label for="input-id" class="col-sm-4 col-md-6 col-4 col-form-label">Email</label>
                     <div class="col-sm-8 col-md-6 col-8">
                         <div class="input-id row">
-                            <input type="text" class="form-control-plaintext col-sm-8 col-12" id="input-id" placeholder="아이디" readonly>
+                            <input type="text" class="form-control-plaintext col-sm-8 col-12" id="input-id" placeholder="이메일" readonly>
                             <!-- Button trigger modal --> 
                             <button type="button" class="btn btn-primary col-sm-4 col-12" data-toggle="modal" data-target="#check-id-modal">
                                 중복검사
@@ -86,12 +86,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label for="input-email" class="col-sm-4 col-md-6 col-4 col-form-label">Email</label>
                     <div class="col-sm-8 col-md-6 col-8">
                         <input type="email" class="form-control" id="input-email" placeholder="이메일">
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group row">
                     <label for="input-name" class="col-sm-4 col-md-6 col-4 col-form-label">Name</label>
                     <div class="col-sm-8 col-md-6 col-8">
@@ -122,7 +122,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">아이디 중복검사</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">이메일 중복검사</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -180,10 +180,10 @@
                 (result)=>{
                     console.log(result);
                     if (result) {
-                        $('#check-id-result').text('이미 사용중인 아이디입니다.');
+                        $('#check-id-result').text('이미 사용중인 이메일입니다.');
                         $('#check-id-use').addClass('hide');
                     } else {
-                        $('#check-id-result').text('사용 가능한 아이디입니다.');
+                        $('#check-id-result').text('사용 가능한 이메일입니다.');
                         $('#check-id-use').removeClass('hide');
                     }
                 },
