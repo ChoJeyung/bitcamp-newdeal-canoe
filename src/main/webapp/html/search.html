@@ -155,8 +155,8 @@ div.search-group {
     $('#input-aap').focus(()=>{
         let inputSap = $('#input-sap').val();
         let sapNo = $('#input-sap').attr('data-ano');
-        console.log('inputSap = ', inputSap);
-        console.log('sapNo = ', sapNo);
+        //console.log('inputSap = ', inputSap);
+        //console.log('sapNo = ', sapNo);
         if (inputSap == '' || inputSap == undefined) {
             $('#input-aap-list-ul').html('');
             return;
@@ -164,7 +164,7 @@ div.search-group {
         $.getJSON(
             `${serverApiAddr}/json/travel/ShowArriveAP/${sapNo}`,
             (result)=>{
-                console.log(result);
+                //console.log(result);
                 if (result.list == null || result.list == '') {
                     swal({
                         type: 'warning',
@@ -192,7 +192,7 @@ div.search-group {
         $('#input-aap').attr('data-ano', '');
     });
     $('#input-sap').keyup(function() {
-        console.log($(this).val());
+        //console.log($(this).val());
         if ($(this).val() == '' || $(this).val() == undefined) {
             $('#input-sap-list-ul').html('');
             return;
@@ -203,7 +203,7 @@ div.search-group {
                 word: $(this).val()
             },
             (result)=>{
-                console.log(result);
+                //console.log(result);
                 $('#input-sap-list-ul').html(searchTemplateS(result));
         });
     });
