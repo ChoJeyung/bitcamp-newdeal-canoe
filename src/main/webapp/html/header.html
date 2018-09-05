@@ -51,15 +51,6 @@ div.div-login {
 	<div class="collapse navbar-collapse" id="nav-header-collpase">
 		<div class="nav-header-button ml-auto">
             <div class="g-signin2 btn btn-md login-no" data-onsuccess="onSignIn"></div>
-            <button type="button" class="btn btn-md btn-danger login-status" onclick="signOut();">SignOut</button>
-            <script>
-                function signOut() {
-                    var auth2 = gapi.auth2.getAuthInstance();
-                    auth2.signOut().then(function() {
-                        console.log('User signed out.');
-                    });
-                }
-            </script>
 			<button type="button" id="login-popover"
 				class="btn btn-md btn-danger login-no" data-toggle="popover"
 				title="Login Form" data-placement="bottom">
@@ -80,6 +71,15 @@ div.div-login {
 				<button type="button" id="logout" class="btn btn-md btn-danger">
 					<i class="fas fa-sign-out-alt"></i> LogOut
 				</button>
+                <button type="button" class="btn btn-md btn-danger login-status hide" onclick="signOut();">SignOut</button>
+                <script>
+                    function signOut() {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signOut().then(function() {
+                            console.log('User signed out.');
+                        });
+                    }
+                </script>
 			</div>
 		</div>
 
