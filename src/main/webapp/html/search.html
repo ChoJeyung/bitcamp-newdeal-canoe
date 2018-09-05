@@ -215,6 +215,8 @@ div.search-group {
         let sap = $('#input-sap').attr('data-ano');
         let aap = $('#input-aap').attr('data-ano');
         let sdt = $('#datepicker1').val();
+        let adt = $('#datepicker2').val();
+        
         if (sap == '' || aap == '' || sdt == '') {
             swal({
                 title: '모든 항목을 입력해주세요!',
@@ -224,7 +226,7 @@ div.search-group {
             });
             return;
         }
-        location.href=`ShowSearchResult.html?sap=${sap}&aap=${aap}&sdt=${sdt}`;
+        location.href=`ShowSearchResult.html?sap=${sap}&aap=${aap}&sdt=${sdt}&adt=${adt}`;
     });
 
 // 검색 관련 --------------------------------------------
