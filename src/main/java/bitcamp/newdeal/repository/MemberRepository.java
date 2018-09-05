@@ -19,4 +19,6 @@ public interface MemberRepository {
 
     String findById(String id);
 
+	Member findByGId(String id);
+
 }

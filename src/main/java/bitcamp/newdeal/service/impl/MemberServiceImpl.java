@@ -44,5 +44,15 @@ public class MemberServiceImpl implements MemberService {
     public String checkId(String id) {
         return memberRepository.findById(id);
     }
+	@Override
+	public Member checkGId(String id) {
+		// TODO Auto-generated method stub
+		return memberRepository.findByGId(id);
+	}
+	@Override
+	public Member getGMember(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
