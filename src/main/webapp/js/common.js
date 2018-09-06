@@ -23,7 +23,8 @@ function logIn(profile) {
             },
             (result)=>{
             	
-                console.log(result.gMember.memberPwd);
+                console.log(result.gMember);
+                //console.log(result.gMember.memberPwd);
                 
                 
                 $.post(
@@ -34,7 +35,16 @@ function logIn(profile) {
                         (result) => {
                             console.log(result)
                             if (result.status === 'success') {
-                                loginUser = result.loginUser;
+
+                                //loginUser = result.loginUser;
+                                if (result.loginUser) {
+                                    loginUser = result.loginUser;
+                                    $('.login-no').addClass('hide');
+                                    $('.login-status').removeClass('hide');
+                                } else {
+                                    $('.login-no').removeClass('hide');
+                                    $('.login-status').addClass('hide');
+                                }
                             } else {
                                 swal({
                                     type: 'error',

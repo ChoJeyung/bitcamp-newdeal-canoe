@@ -44,27 +44,32 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="nav-header-collpase">
-        <div class="nav-header-button ml-auto">
-            <button type="button" id="login-popover" class="btn btn-md btn-danger login-no" data-toggle="popover" title="Login Form"
-                data-placement="bottom">
-                <i class="fas fa-sign-in-alt"></i> LogIn
-            </button>
-            <button type="button" id="register-view" class="btn btn-md btn-danger login-no">
-                <i class="fas fa-check"></i> Register
-            </button>
-            <div class="login-status hide">
-                <button type="button" id="myInfo-view" class="btn btn-md btn-info">
-                    <i class="fas fa-user-circle"></i> 내 정보
-                </button>
-                <button type="button" id="reservation-view" class="btn btn-md btn-info" onclick=location.href="ShowReservations.html">
-                    <i class="fas fa-tags"></i> 예약현황
-                </button>
-                <button type="button" id="logout" class="btn btn-md btn-danger">
-                    <i class="fas fa-sign-out-alt"></i> LogOut
-                </button>
-            </div>
-        </div>
+	<div class="collapse navbar-collapse" id="nav-header-collpase">
+		<div class="nav-header-button ml-auto">
+            <div class="g-signin2 btn btn-md login-no" data-onsuccess="onSignIn"></div>
+			<button type="button" id="login-popover"
+				class="btn btn-md btn-danger login-no" data-toggle="popover"
+				title="Login Form" data-placement="bottom">
+				<i class="fas fa-sign-in-alt"></i> LogIn
+			</button>
+			<button type="button" id="register-view"
+				class="btn btn-md btn-danger login-no">
+				<i class="fas fa-check"></i> Register
+			</button>
+			<div class="login-status hide">
+				<button type="button" id="myInfo-view" class="btn btn-md btn-info">
+					<i class="fas fa-user-circle"></i> 내 정보
+				</button>
+				<button type="button" id="reservation-view"
+					class="btn btn-md btn-info" onclick=location.href="ShowReservations.html">
+					<i class="fas fa-tags"></i> 예약현황
+				</button>
+				<button type="button" id="logout" class="btn btn-md btn-danger">
+					<i class="fas fa-sign-out-alt"></i> LogOut
+				</button>
+                <!-- <button type="button" class="btn btn-md btn-danger login-status hide" onclick="signOut();">SignOut</button> -->
+			</div>
+		</div>
 
     </div>
 
@@ -74,48 +79,28 @@
 <!-- navbar end -->
 
 <!-- 로그인 폼 2 - 팝오버 사용 -->
-
-<a href="#" onclick="signOut();">Sign out</a>
-<script>
-    function signOut() {
-
-        $.get(
-            `${serverApiAddr}/json/auth/logOut`,
-            () => {
-                swal({  //SweetAlert plugin 사용
-                    title: '로그아웃 하시겠습니까?',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: '예',
-                    cancelButtonText: '아니오'
-                }).then((result) => {
-                    if (result.value) {
-                        var auth2 = gapi.auth2.getAuthInstance();
-                        auth2.signOut().then(function () {
-                            console.log('User signed out.');
-                        });
-                        loginUser = '';
-                        location.href = 'main.html';
-                    }
-                })
-            });
-    }
-</script>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-<form id="popover-login-form" class="form-group row" style="display: none">
-    <div class="login-form">
-        <input type="text" class="form-control fId" placeholder="아이디">
-    </div>
-    <div class="login-form">
-        <input type="password" class="form-control fPassword" placeholder="암호">
-    </div>
-    <div class="login-form">
-        <button type="button" class="btn btn-info loginBtn">로그인</button>
-    </div>
+<form id="popover-login-form" class="form-group row"
+style="display: none">
+	<div class="login-form">
+		<input type="text" class="form-control fId" placeholder="이메일">
+	</div>
+	<div class="login-form">
+		<input type="password" class="form-control fPassword" placeholder="암호">
+	</div>
+	<div class="login-form">
+		<button type="button" class="btn btn-info loginBtn">로그인</button>
+	</div>
 </form>
 
+<script>
+    // 구글 로그아웃
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+            console.log('User signed out.');
+        });
+    }
+</script>
 <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script>
     'use strict'
@@ -135,6 +120,7 @@
 
     //로그아웃------------------------------------------------
     $('#logout').click(() => {
+        signOut();
         $.get(
             `${serverApiAddr}/json/auth/logOut`,
             () => {

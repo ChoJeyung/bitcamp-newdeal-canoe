@@ -46,6 +46,7 @@
     <update id="updateMember" parameterType="Member">
         UPDATE P0_MEMB
         SET
+            MID=#{memberId},
             NAME=#{memberName},
             MDT=NOW()
             <if test="memberPwd != null and memberPwd != ''">
