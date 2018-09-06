@@ -94,9 +94,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("dropID")
-	public Object dropID(String id) {
+	public Object dropID(HttpSession session) {
 	    HashMap<String, Object> result = new HashMap<>();
-	    memberService.dropID(id);
+	    Member logInMember = (Member)session.getAttribute("loginUser");
+	    System.out.println(logInMember.getMemberId());
+	    memberService.dropID(logInMember.getMemberId());
 	    result.put("status", "success");
 	    return result;
 	}
