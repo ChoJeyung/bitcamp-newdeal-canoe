@@ -2,6 +2,19 @@
 
 var serverApiAddr = "http://localhost:8080/bitcamp-newdeal-canoe";
 function logIn(profile) {
+	var loginUser; // 세션을 담을 변수
+    $.getJSON(
+        `${serverApiAddr}/json/auth/sessionCheck`,
+        (result) => {
+            if (result.loginUser) {
+                loginUser = result.loginUser;
+                $('.login-no').addClass('hide');
+                $('.login-status').removeClass('hide');
+            } else {
+                $('.login-no').removeClass('hide');
+                $('.login-status').addClass('hide');
+            }
+        });
 	$.get(
 			//`http://localhost:8000/checkId`,
             `${serverApiAddr}/json/member/checkGID`,
