@@ -54,6 +54,14 @@
     display: none;
 }
 
+.container {
+	padding: 0px !important;
+}
+#footer {
+	background-image: url("../img/footer-background.jpg");
+	max-height: 63px;
+}
+
 </style>
 </head>
 <body>
@@ -78,11 +86,11 @@
                     <label for="input-email" class="col-sm-4 col-md-6 col-4 col-form-label">Email</label>
                     <div class="col-sm-8 col-md-6 col-8">
                         <div class="input-id row">
-                            <input type="text" class="form-control-plaintext col-sm-8 col-12" id="input-id" placeholder="이메일" readonly>
+                            <input type="text" class="form-control-plaintext col-sm-12 col-12" id="input-id" placeholder="이메일" readonly>
                             <!-- Button trigger modal --> 
-                            <button type="button" class="btn btn-primary col-sm-4 col-12 modify-confirm modify-hide" data-toggle="modal" data-target="#check-id-modal">
+                            <!-- <button type="button" class="btn btn-primary col-sm-4 col-12 modify-confirm modify-hide" data-toggle="modal" data-target="#check-id-modal">
                                 중복검사
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -141,7 +149,9 @@
             </div>
         </div> <!-- Modal end -->
 
-
+        <div class="footer">
+            <div id="footer"></div>
+        </div>
     </div>
     <!-- container end -->
 
@@ -167,6 +177,8 @@
 
         //header 불러오기
         $('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+        //footer 불러오기
+        $('#footer').load(`${serverApiAddr}/html/footer.html`);
         
         //내 정보 불러오기
         getMyInfo();
@@ -248,14 +260,16 @@
         $('#modify-view').click(function() {
             $(this).addClass('modify-hide');
             $('.modify-confirm').removeClass('modify-hide');
-            $('#register-form input').prop('readonly', '');
+            //$('#register-form input').prop('readonly', '');
+            $('#input-name, #input-password').prop('readonly', '');
         });
         
         //수정 취소
         $('#modify-cancel').click(function() {
             $('.modify-confirm').addClass('modify-hide');
             $('#modify-view').removeClass('modify-hide');
-            $('#register-form input').prop('readonly', true);
+            //$('#register-form input-name').prop('readonly', true);
+            $('#input-name, #input-password').prop('readonly', true);
             getMyInfo();
         });
 
@@ -276,7 +290,7 @@
             $.post(
                 `${serverApiAddr}/json/member/myInfoModify`,
                 {
-                    memberId: $('#input-id').val(),
+                    //memberId: $('#input-id').val(),
                     memberName: $('#input-name').val(),
                     memberPwd: $('#input-password').val()
                 },

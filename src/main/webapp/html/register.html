@@ -13,8 +13,13 @@
     position:relative;
     min-width: 360px;
 } */
-
-
+.container {
+	padding: 0px !important;
+}
+#footer {
+	background-image: url("../img/footer-background.jpg");
+	max-height: 63px;
+}
 #register-form {
     margin: auto;
     padding: 10px
@@ -141,7 +146,10 @@
                 </div>
             </div>
         </div> <!-- Modal end -->
-
+        
+        <div class="footer">
+            <div id="footer"></div>
+        </div>
     </div>
     <!-- container end -->
 
@@ -217,8 +225,10 @@
 
         //header 불러오기
         $('#navbar-login').load(`${serverApiAddr}/html/header.html`);
-            // $('#search-bar').load(`${serverApiAddr}/html/search.html`);
-            // $('#travel-list').load(`${serverApiAddr}/html/travel.html`);
+        $('#footer').load(`${serverApiAddr}/html/footer.html`);    
+        // $('#search-bar').load(`${serverApiAddr}/html/search.html`);
+        // $('#travel-list').load(`${serverApiAddr}/html/travel.html`);
+
 
         //회원가입 관련 ---------------------------------------------------
         $('#register-submit').click(()=>{

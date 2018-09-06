@@ -14,10 +14,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
         handler = session.getAttribute("loginUser");
-        if (handler == null) {
-            System.out.println("로그인 필요함!");
-            return false;
-        }
+//        if (handler == null) {
+//            System.out.println("로그인 필요함!");
+//            return false;
+//        }
         return true;
     }
 
