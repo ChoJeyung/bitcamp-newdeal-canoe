@@ -120,7 +120,6 @@ style="display: none">
 
     //로그아웃------------------------------------------------
     $('#logout').click(() => {
-        signOut();
         $.get(
             `${serverApiAddr}/json/auth/logOut`,
             () => {
@@ -133,6 +132,7 @@ style="display: none">
                     confirmButtonText: '예',
                     cancelButtonText: '아니오'
                 }).then((result) => {
+                    signOut();
                     if (result.value) {
                         loginUser = '';
                         location.href = 'main.html';

@@ -17,8 +17,10 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/auth/logIn"/>
+            <mvc:exclude-mapping path="/auth/gLogIn"/>
             <mvc:exclude-mapping path="/member/register"/>
             <mvc:exclude-mapping path="/member/checkId"/>
+            <mvc:exclude-mapping path="/member/checkGId"/>
             <mvc:exclude-mapping path="/airport/sapSearch"/>
             <mvc:exclude-mapping path="/travel/**"/>
             <mvc:exclude-mapping path="/grade/**"/>
