@@ -92,4 +92,14 @@ public class MemberController {
 	    result.put("gMember", gMember);
 	    return result;
 	}
+	
+	@GetMapping("dropID")
+	public Object dropID(HttpSession session) {
+	    HashMap<String, Object> result = new HashMap<>();
+	    Member logInMember = (Member)session.getAttribute("loginUser");
+	    System.out.println(logInMember.getMemberId());
+	    memberService.dropID(logInMember.getMemberId());
+	    result.put("status", "success");
+	    return result;
+	}
 }

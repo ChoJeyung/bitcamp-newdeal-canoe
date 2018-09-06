@@ -22,4 +22,6 @@ public interface MemberService {
 
 	Member getGMember(String id);
 
+	 int dropID(String id);
+
 }

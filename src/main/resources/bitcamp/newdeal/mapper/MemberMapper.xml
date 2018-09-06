@@ -65,6 +65,11 @@
         FROM P0_MEMB
         WHERE MID=#{id}
     </select>
+    
+    <delete id="dropID" parameterType="string">
+    delete from P0_MEMB
+    where MID=#{id}
+    </delete>
 </mapper>
 
 
