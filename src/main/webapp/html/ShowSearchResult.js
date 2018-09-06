@@ -1,18 +1,18 @@
 "use strict"
-var liTemplateSrc = $('#li-template').text();
-var template = Handlebars.compile(liTemplateSrc);
+var litemplatesrc = $('#li-template').text();
+var template = handlebars.compile(litemplatesrc);
 
-var { sap, aap, sdt, adt } = $.parseQuery(location.href);
+var { sap, aap, sdt, adt } = $.parsequery(location.href);
 
-loadStartList();
+loadstartlist();
 
 let cardbody = $('.card');
 let data = null;
 
 
-function loadStartList() {
+function loadstartlist() {
 	// 출발 공항 번호/도착 공항 번호/출발 날짜/도착 날짜
-    $.getJSON(`${serverApiAddr}/json/travel/ShowSearchResult/${sap}/${aap}/${sdt}`, (result) => {
+    $.getjson(`${serverapiaddr}/json/travel/showsearchresult/${sap}/${aap}/${sdt}`, (result) => {
     	
     	for (var i = 0; i < result.list.length; i++) {
 			result.list[i].adt = adt;
@@ -29,5 +29,5 @@ function loadStartList() {
 $('.travel').on('click', function(event){
 	var no = $(event.target).attr('data-id');
 	console.log($(event.target));
-	location.href='ShowPrice.html?travelNo'+no;
+	location.href='showprice.html?travelno'+no;
 });

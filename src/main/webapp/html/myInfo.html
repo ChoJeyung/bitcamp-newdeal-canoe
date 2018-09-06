@@ -110,7 +110,10 @@
                 <div class="form-group row">
                     <div class="col-sm-4 col-md-6 col-4"></div>
                     <div class="col-sm-8 col-md-6 col-8">
-                        <button id="modify-view" type="button" class="btn btn-primary">수정하기</button>
+                        <div class="modify-view">
+                            <button id="modify-view" type="button" class="btn btn-primary">수정하기</button>
+                            <button id="drop" type="button" class="btn btn-warning">탈퇴</button>
+                        </div>
                         <div class="modify-confirm modify-hide">
                             <button id="modify-submit" type="button" class="btn btn-danger">저장</button>
                             <button id="modify-cancel" type="button" class="btn btn-primary">취소</button>
@@ -258,7 +261,7 @@
 
         //수정 폼 보여주기
         $('#modify-view').click(function() {
-            $(this).addClass('modify-hide');
+            $('.modify-view').addClass('modify-hide');
             $('.modify-confirm').removeClass('modify-hide');
             //$('#register-form input').prop('readonly', '');
             $('#input-name, #input-password').prop('readonly', '');
@@ -267,7 +270,7 @@
         //수정 취소
         $('#modify-cancel').click(function() {
             $('.modify-confirm').addClass('modify-hide');
-            $('#modify-view').removeClass('modify-hide');
+            $('.modify-view').removeClass('modify-hide');
             //$('#register-form input-name').prop('readonly', true);
             $('#input-name, #input-password').prop('readonly', true);
             getMyInfo();
@@ -303,6 +306,52 @@
     
     //수정하기 관련 end ---------------------------------------------------------
 
+    //탈퇴하기
+    $('#drop').click(()=>{
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            cancelButtonText: '아니오',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '예'
+        }).then((result) => {
+            if (result.value) {
+                dropMember();
+            }
+        })
+    });
+
+    function dropMember() {
+        $.get(
+            `${serverApiAddr}/json/member/dropID`,
+            (result)=>{
+                if (result.status == 'success') {
+                    swal({
+                        title: '잘 가!',
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: '확인'
+                    }).then(()=>{
+                        location.href = 'main.html';
+                    });
+                    setTimeout(() => {
+                        location.href = 'main.html';
+                    }, 2000);
+                } else {
+                    swal({
+                        title: '서버 오류!',
+                        type: 'fail',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: '확인'
+                    })
+                }
+            },
+            'json'
+        );
+    }
     </script>
 </body>
 </html>
