@@ -20,8 +20,8 @@ function loadStartList() {
     	console.log(result);
         var html = template(result);
         data = result;
-        $('#content-middle').html('');
-        $('#content-middle').html(html);
+        $('#content-middle-start').html('');
+        $('#content-middle-start').html(html);
     })
 }
 

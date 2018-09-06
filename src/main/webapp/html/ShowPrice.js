@@ -57,7 +57,7 @@ function makeReserv(seatClass){
 			}
 			console.log(data);
 			$.getJSON
-			(`${serverApiAddr}/json/reservation/MakeReservation/`+"1/"+json.list.travelNo+"/"+seatClass, (result) => {
+			(`${serverApiAddr}/json/reservation/MakeReservation/`+"1 /"+json.list.travelNo+"/"+seatClass, (result) => {
 				movePage();
 			})
 	});

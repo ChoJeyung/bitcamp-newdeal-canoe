@@ -54,5 +54,10 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public int dropID(String id) {
+		// TODO Auto-generated method stub
+		return memberRepository.dropID(id);
+	}
 
 }

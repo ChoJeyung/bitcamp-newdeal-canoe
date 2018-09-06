@@ -92,4 +92,12 @@ public class MemberController {
 	    result.put("gMember", gMember);
 	    return result;
 	}
+	
+	@GetMapping("dropID")
+	public Object dropID(String id) {
+	    HashMap<String, Object> result = new HashMap<>();
+	    memberService.dropID(id);
+	    result.put("status", "success");
+	    return result;
+	}
 }

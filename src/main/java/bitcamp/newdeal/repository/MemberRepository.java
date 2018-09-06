@@ -21,4 +21,6 @@ public interface MemberRepository {
 
 	Member findByGId(String id);
 
+	int dropID(String id);
+
 }
