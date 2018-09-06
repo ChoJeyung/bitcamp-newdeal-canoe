@@ -185,8 +185,9 @@
         // 이메일 중복검사 후 사용 버튼
         $('#check-id-use').click(()=>{
             var id = $('#check-id-input').val();
-            var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            var regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
             if (id != '' && id != 'undefined' && regex.test(id)) {
+                console.log(regex.test(id));
                 $('#input-id').val($('#check-id-input').val());
             } else {
                 swal({
@@ -212,6 +213,17 @@
 
         // 이메일 중복검사
         $('#check-id-btn').click(()=>{
+            var id = $('#check-id-input').val();
+            var regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+            if (id == '' || id == 'undefined' || !regex.test(id)) {
+                swal({
+                    title: '이메일 형식에 맞게 입력해주세요!',
+                    type: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: '확인'
+                });
+                return;
+            }
             $.get(
                 `${serverApiAddr}/json/member/checkId`,
                 //`http://localhost:8000/checkId`,

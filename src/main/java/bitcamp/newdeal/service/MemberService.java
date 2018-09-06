@@ -18,4 +18,8 @@ public interface MemberService {
 
     String checkId(String id);
 
+	Member checkGId(String id);
+
+	Member getGMember(String id);
+
 }

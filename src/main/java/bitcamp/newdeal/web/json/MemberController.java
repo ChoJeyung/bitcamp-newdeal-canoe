@@ -78,9 +78,18 @@ public class MemberController {
 	@GetMapping("checkId")
 	public Object checkId(String id) {
 	    //HashMap<String, Object> result = new HashMap<>();
+		System.out.println(id);
 	    id = memberService.checkId(id);
-	    //System.out.println(id);
 	    //result.put("id", id);
 	    return id;
+	}
+	@GetMapping("checkGID")
+	public Object checkGID(String id) {
+	    HashMap<String, Object> result = new HashMap<>();
+		Member gMember = new Member();
+		System.out.println(id);
+	    gMember = memberService.checkGId(id);
+	    result.put("gMember", gMember);
+	    return result;
 	}
 }

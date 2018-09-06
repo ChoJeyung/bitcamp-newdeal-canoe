@@ -1,52 +1,48 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id"
-	content="918556772014-u606nqhinihmeerqfvtal0010k6h3rjo.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="918556772014-u606nqhinihmeerqfvtal0010k6h3rjo.apps.googleusercontent.com">
 <style>
-.container {
-	font-family: 'Sunflower', sans-serif;
-	/* font-family: 'Black Han Sans', sans-serif;
+    .container {
+        font-family: 'Sunflower', sans-serif;
+        /* font-family: 'Black Han Sans', sans-serif;
     font-family: 'Jua', sans-serif;
     font-family: 'Do Hyeon', sans-serif; */
-	font-size: 20px;
-	min-width: 360px;
-	position: relative;
-	/* background-image: url(../img/grim.jpg);
+        font-size: 20px;
+        min-width: 360px;
+        position: relative;
+        /* background-image: url(../img/grim.jpg);
     background-size: 100%; */
-}
+    }
 
-.form-group.row {
-	margin: 0px 15px 0px 15px;
-}
+    .form-group.row {
+        margin: 0px 15px 0px 15px;
+    }
 
-.login-form input, .login-form button {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
+    .login-form input,
+    .login-form button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 
-div.div-login {
-	width: 600px;
-}
+    div.div-login {
+        width: 600px;
+    }
 
-#loginBtn {
-	width: 100%;
-}
+    #loginBtn {
+        width: 100%;
+    }
 
-.hide {
-	display: none;
-}
+    .hide {
+        display: none;
+    }
 </style>
-<link
-	href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Jua|Sunflower:300"
-	rel="stylesheet">
-<nav id="nav-header"
-	class="navbar navbar-expand-md navbar-dark bg-primary">
-	<a class="navbar-brand" href="main.html">Canoe!</a>
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Jua|Sunflower:300" rel="stylesheet">
+<nav id="nav-header" class="navbar navbar-expand-md navbar-dark bg-primary">
+    <a class="navbar-brand" href="main.html">Canoe!</a>
 
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#nav-header-collpase" aria-controls="nav-header-collpase"
-		aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-header-collpase" aria-controls="nav-header-collpase"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
 	<div class="collapse navbar-collapse" id="nav-header-collpase">
 		<div class="nav-header-button ml-auto">
@@ -71,19 +67,11 @@ div.div-login {
 				<button type="button" id="logout" class="btn btn-md btn-danger">
 					<i class="fas fa-sign-out-alt"></i> LogOut
 				</button>
-                <button type="button" class="btn btn-md btn-danger login-status hide" onclick="signOut();">SignOut</button>
-                <script>
-                    function signOut() {
-                        var auth2 = gapi.auth2.getAuthInstance();
-                        auth2.signOut().then(function() {
-                            console.log('User signed out.');
-                        });
-                    }
-                </script>
+                <!-- <button type="button" class="btn btn-md btn-danger login-status hide" onclick="signOut();">SignOut</button> -->
 			</div>
 		</div>
 
-	</div>
+    </div>
 
 
 
@@ -92,7 +80,7 @@ div.div-login {
 
 <!-- 로그인 폼 2 - 팝오버 사용 -->
 <form id="popover-login-form" class="form-group row"
-	style="display: none">
+style="display: none">
 	<div class="login-form">
 		<input type="text" class="form-control fId" placeholder="이메일">
 	</div>
@@ -104,29 +92,39 @@ div.div-login {
 	</div>
 </form>
 
+<script>
+    // 구글 로그아웃
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+            console.log('User signed out.');
+        });
+    }
+</script>
 <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script>
-'use strict'
+    'use strict'
 
-//내 정보 화면으로 이동
-$('#myInfo-view').click(()=>{
-    //console.log(loginUser);
-    if (loginUser != undefined || loginUser != '') {
-        location.href = 'myInfo.html';
-    }
-});
+    //내 정보 화면으로 이동
+    $('#myInfo-view').click(() => {
+        //console.log(loginUser);
+        if (loginUser != undefined || loginUser != '') {
+            location.href = 'myInfo.html';
+        }
+    });
 
-//회원가입 화면이동
-$('#register-view').click(()=>{
-    location.href = "register.html";
-});
+    //회원가입 화면이동
+    $('#register-view').click(() => {
+        location.href = "register.html";
+    });
 
-//로그아웃------------------------------------------------
-$('#logout').click(()=>{
-    $.get(
-        `${serverApiAddr}/json/auth/logOut`, 
-        ()=>{
-            swal({  //SweetAlert plugin 사용
+    //로그아웃------------------------------------------------
+    $('#logout').click(() => {
+        signOut();
+        $.get(
+            `${serverApiAddr}/json/auth/logOut`,
+            () => {
+                swal({  //SweetAlert plugin 사용
                     title: '로그아웃 하시겠습니까?',
                     type: 'warning',
                     showCancelButton: true,
@@ -140,18 +138,18 @@ $('#logout').click(()=>{
                         location.href = 'main.html';
                     }
                 })
-        });
-});
+            });
+    });
 
-//로그아웃 end--------------------------------------------
+    //로그아웃 end--------------------------------------------
 
-//로그인 관련 --------------------------------------------
+    //로그인 관련 --------------------------------------------
     //세션 체크
     var loginUser; // 세션을 담을 변수
     $.getJSON(
-        `${serverApiAddr}/json/auth/sessionCheck`, 
-        (result)=>{
-            if(result.loginUser) {
+        `${serverApiAddr}/json/auth/sessionCheck`,
+        (result) => {
+            if (result.loginUser) {
                 loginUser = result.loginUser;
                 $('.login-no').addClass('hide');
                 $('.login-status').removeClass('hide');
@@ -159,16 +157,16 @@ $('#logout').click(()=>{
                 $('.login-no').removeClass('hide');
                 $('.login-status').addClass('hide');
             }
-    });
+        });
 
     //로그인 시
     $('body').on('click', '.popover-body .loginBtn', (e) => {
         $.post(
-            `${serverApiAddr}/json/auth/logIn`, 
+            `${serverApiAddr}/json/auth/logIn`,
             {
                 id: $('.fId:eq(1)').val(),
                 password: $('.fPassword:eq(1)').val()
-            }, 
+            },
             (result) => {
                 console.log(result)
                 if (result.status === 'success') {
@@ -181,7 +179,7 @@ $('#logout').click(()=>{
                         text: '아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다'
                     })
                 }
-            }, 
+            },
             'json')
             .fail((e) => {
                 swal({
@@ -191,12 +189,12 @@ $('#logout').click(()=>{
                 console.log(e);
             });
     });
-    
+
     //popever 로그인창 띄우기
     $(function () {
         $('#login-popover').popover({
-            html: true, 
-	        content: function() {
+            html: true,
+            content: function () {
                 return $('#popover-login-form').html();
             }
         })

@@ -156,10 +156,8 @@
         // 아이디 중복검사 후 사용 버튼
         $('#check-id-use').click(()=>{
             var id = $('#check-id-input').val();
-            var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-            if (id != '' && id != 'undefined' && regex.test(id)) {
-                $('#input-id').val($('#check-id-input').val());
-            } else {
+            var regex= /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+            if (id == '' || id == 'undefined' || !regex.test(id)) {
                 swal({
                     title: '이메일 형식에 맞게 입력해주세요!',
                     type: 'warning',
@@ -168,6 +166,7 @@
                 });
                 return;
             }
+            $('#input-id').val($('#check-id-input').val());
         });
         
         // 아이디 입력창
@@ -184,8 +183,9 @@
         // 아이디 중복검사
         $('#check-id-btn').click(()=>{
             var id = $('#check-id-input').val();
-            var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-            if (email != '' && email != 'undefined' && regex.test(email)) {
+            var regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,20}$/;
+            console.log(regex.test(id));
+            if (id == '' || id == 'undefined' || !regex.test(id)) {
                 swal({
                     title: '이메일 형식에 맞게 입력해주세요!',
                     type: 'warning',

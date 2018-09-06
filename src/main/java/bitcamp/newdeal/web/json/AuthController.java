@@ -39,6 +39,7 @@ public class AuthController {
         System.out.println(id+" : "+password);
         try {
             Member loginUser = memberService.getMember(id, password);
+            System.out.println(loginUser);
             if (loginUser == null) {
                 throw new Exception("로그인 실패!");
             }
@@ -49,7 +50,28 @@ public class AuthController {
         } catch (Exception e) {
             result.put("status", "fail");
             result.put("message", e.getMessage());
-            System.out.println(e);
+            System.out.println(e.getMessage());
+        }
+        return result;
+    }
+    
+    @PostMapping("gLogIn")
+    public Object gLogIn(String id, HttpSession session) {
+        HashMap<String, Object> result = new HashMap<>();
+        try {
+            Member loginUser = memberService.checkGId(id);
+            System.out.println(loginUser);
+            if (loginUser == null) {
+                throw new Exception("로그인 실패!");
+            }
+            loginUser.setMemberPwd("");
+            session.setAttribute("loginUser", loginUser);
+            result.put("status", "success");
+            result.put("loginUser", loginUser);
+        } catch (Exception e) {
+            result.put("status", "fail");
+            result.put("message", e.getMessage());
+            System.out.println(e.getMessage());
         }
         return result;
     }
