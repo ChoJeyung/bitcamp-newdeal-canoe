@@ -20,4 +20,6 @@ public interface TravelRepository {
 	List<Travel> showFutureReservation(int no);
 
 	List<Travel> findByStartAP(int no);
+
+	List<Travel> findByAPNo(int apNo);
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Canoe!</title>
+<!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.Cerulean.css" /> -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../node_modules/jquery-ui-dist/jquery-ui.min.css" />
+<link rel="stylesheet"
+	href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+<style>
+#search-result-bg {
+	margin-top: 20px;
+	/* background-color: blue; */
+	width: 100%;
+	height: 200px;
+	position: relative;
+	color: white;
+	background-image: url(../img/Stripe-100-Vertices.jpeg);
+	background-size: 100%;
+	margin: 0px 0px;
+	/* background-image: url("../img/28_Days_Later_hazard.jpg");
+    background-size: contain;*/
+}
+
+#search-result-bg h1 {
+	text-align: left;
+	position: absolute;
+	bottom: 0px;
+	left: 10%;
+}
+
+/* .container {
+	text-align: justify;
+	position: relative;
+} */
+/* .container {
+	padding: 0px !important;
+}
+#footer {
+	background-image: url("../img/footer-background.jpg");
+	max-height: 63px;
+} */
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<section id="navbar-login"></section>
+		<section id="content-top">
+			<div id="search-result-bg" class="bg-light">
+				<h1>검색 결과</h1>
+			</div>
+		</section>
+		<div class="row">
+			<div id="content-middle-start" class="col">
+			</div>
+		</div>
+		<!-- .container -->
+		<script id="li-template" type="text/x-handlebars-template">
+
+		{{#each list}}
+        
+		<div class="card text-white bg-info" onclick='location.href="ShowPrice.html?travelNo={{travelNo}}&adt={{adt}}&sap={{startAirportNo}}&aap={{arriveAirportNo}}"'
+            style="margin: 20px;">
+				<div class="card-header">{{startAirportName}} -> {{arriveAirportName}}</div>
+				<div class="card-body">
+					<h4 class="card-title"></h4>
+					<p class="card-text">출발: {{startTravelTime}}</p>
+					<p class="card-text">도착: {{arriveTravelTime}}</p>
+				</div>
+			</div>
+			{{/each}}
+		</script>
+		<div class="footer">
+			<section id="footer"></section>
+		</div>
+	</div>
+	<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.bit.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="ShowFutureTravels.js"></script>
+	<script>
+		'use strict'
+		$('#navbar-login').load(`${serverApiAddr}/html/header.html`);
+		$('#footer').load(`${serverApiAddr}/html/footer.html`);
+		//$('#content-top').load(`${serverApiAddr}/html/search.html`);
+		//$('#content-middle').load(`${serverApiAddr}/html/travel.html`);
+	</script>
+</html>

@@ -60,7 +60,7 @@ function makeReserv(seatClass){
 			(`${serverApiAddr}/json/reservation/MakeReservation/`+ result.loginUser.memberNo +"/"+json.list.travelNo+"/"+seatClass, (result) => {
 				movePage();
 			})
-	});
+	}); 
 }
 
 function movePage() {
