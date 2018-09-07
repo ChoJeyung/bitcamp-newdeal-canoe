@@ -23,5 +23,10 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-	
+	    <!-- Ajax 요청에 대한 Cross Domain 설정 -->
+    <mvc:cors>
+        <mvc:mapping path="/**"
+            allowed-origins="*"
+            max-age="100" />
+    </mvc:cors>
 </beans>
