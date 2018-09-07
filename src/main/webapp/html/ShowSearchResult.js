@@ -1,8 +1,8 @@
 "use strict"
 var litemplatesrc = $('#li-template').text();
-var template = handlebars.compile(litemplatesrc);
+var template = Handlebars.compile(litemplatesrc);
 
-var { sap, aap, sdt, adt } = $.parsequery(location.href);
+var { sap, aap, sdt, adt } = $.parseQuery(location.href);
 
 loadstartlist();
 
@@ -12,7 +12,7 @@ let data = null;
 
 function loadstartlist() {
 	// 출발 공항 번호/도착 공항 번호/출발 날짜/도착 날짜
-    $.getjson(`${serverapiaddr}/json/travel/showsearchresult/${sap}/${aap}/${sdt}`, (result) => {
+    $.getJSON(`${serverApiAddr}/json/travel/ShowSearchResult/${sap}/${aap}/${sdt}`, (result) => {
     	
     	for (var i = 0; i < result.list.length; i++) {
 			result.list[i].adt = adt;

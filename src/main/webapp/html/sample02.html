@@ -1,0 +1,113 @@
+<style>
+#sample-travels{
+    height: 350px;
+    overflow: hidden;
+    text-align: center;
+}
+.slidein {
+    animation-duration: 0.5s;
+    animation-name: slidein;
+}
+@keyframes slidein {
+    from {
+        margin-left: 25%;
+        width: 100%; 
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+</style>
+
+<hr>
+
+<div class="row" id="sample-travels">
+
+    <div class="sample-travel col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+            <h3 class="card-header">광저우</h3> <!-- ../img/travel -->
+            <img style="height: 200px; width: 100%; display: block;" src="../img/travel/can-d.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">인천&nbsp;&nbsp;<i class="fas fa-plane"></i>&nbsp;&nbsp;광저우</li>
+                <li class="list-group-item"><i class="fas fa-won-sign"></i>473,500</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+            <h3 class="card-header">두바이</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/travel/dxb-d.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">인천&nbsp;&nbsp;<i class="fas fa-plane"></i>&nbsp;&nbsp;두바이</li>
+                <li class="list-group-item"><i class="fas fa-won-sign"></i>1,069,400</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+            <h3 class="card-header">괌</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/travel/gum-d.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">인천&nbsp;&nbsp;<i class="fas fa-plane"></i>&nbsp;&nbsp;괌</li>
+                <li class="list-group-item"><i class="fas fa-won-sign"></i>448,900</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+            <h3 class="card-header">나리타</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/travel/hnd-d.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">인천&nbsp;&nbsp;<i class="fas fa-plane"></i>&nbsp;&nbsp;나리타</li>
+                <li class="list-group-item"><i class="fas fa-won-sign"></i>307,900</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+            <h3 class="card-header">마닐라</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/travel/mnl-d.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">인천&nbsp;&nbsp;<i class="fas fa-plane"></i>&nbsp;&nbsp;마닐라</li>
+                <li class="list-group-item"><i class="fas fa-won-sign"></i>1,025,200</li>
+            </ul>
+        </div>
+    </div>
+<!-- <div class="sample-travel col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+            <h3 class="card-header">라스베이거스</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/travel/las-d 인천-라스베이거스 1324000.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">인천&nbsp;&nbsp;<i class="fas fa-plane"></i>&nbsp;&nbsp;라스베익스</li>
+                <li class="list-group-item"><i class="fas fa-won-sign"></i>1,324,000</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sample-travel col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+            <h3 class="card-header">로스앤젤레스</h3>
+            <img style="height: 200px; width: 100%; display: block;" src="../img/travel/lax-d 인천-로스앤젤레스 1025200.jpg" alt="Card image">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">인천&nbsp;&nbsp;<i class="fas fa-plane"></i>&nbsp;&nbsp;로스앤젤레스</li>
+                <li class="list-group-item"><i class="fas fa-won-sign"></i>1,025,200</li>
+            </ul>
+        </div>
+    </div> -->
+  
+
+</div>
+
+
+
+<script>
+'use strict'
+$('#sample-travels').on('click', '.sample-travel', ()=>{
+    $('#sample-travels > div:first-child').removeClass('slidein');
+    $('#sample-travels').append($('#sample-travels > div:first-child'));
+    $('#sample-travels > div:first-child').addClass('slidein');
+});
+
+</script>
