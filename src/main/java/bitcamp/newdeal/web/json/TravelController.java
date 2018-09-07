@@ -87,5 +87,13 @@ public class TravelController {
 		result.put("list", travel);
 		return result;
 	}
-	
+	@GetMapping("ShowFutureTravels/{apNo}")
+	public Object showSearchResult(@PathVariable int apNo) throws ParseException {
+
+		List<Travel> travel = travelService.showFutureTravels(apNo);
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
+		result.put("list", travel);
+		return result;
+	}
 }

@@ -118,6 +118,25 @@
             TR.SAP = #{no}
             ORDER BY AAPNAME
     </select>
+    
+    <select id="findByAPNo" resultMap="travelMap" parameterType="int">
+        select
+        TR.TNO,
+        TR.SAP,
+        TR.AAP,
+        TR.SDT,
+        TR.ADT,
+        SA.NAME SAPNAME,
+        AA.NAME AAPNAME
+        from P0_TRVL TR
+        JOIN P0_AP SA ON TR.SAP = SA.ANO
+        JOIN P0_AP AA
+        ON TR.AAP
+        = AA.ANO
+        where TR.AAP = #{value}
+        AND TR.SDT >= CURDATE()
+        
+    </select>
 </mapper>
 
 

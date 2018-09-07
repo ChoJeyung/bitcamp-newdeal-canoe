@@ -60,4 +60,10 @@ public class TravelServiceImpl implements TravelService {
 		return travelRepository.findByStartAP(no);
 	}
 
+	@Override
+	public List<Travel> showFutureTravels(int apNo) {
+		// TODO Auto-generated method stub
+		return travelRepository.findByAPNo(apNo);
+	}
+
 }
